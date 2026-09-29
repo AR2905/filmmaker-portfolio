@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import FilmIntro from '@/components/film-intro'
 
 const works = [
   { number: '01', title: 'SAWAAN\nKA MAAH', slug: 'sawaan-ka-maah', image: '/images/sawaan-rain.png', tag: 'A poem of distance' },
@@ -11,7 +12,7 @@ const works = [
 ]
 function ShowReel() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -129,99 +130,6 @@ function ShowReel() {
     </section>
   );
 }
-// function ShowReel() {
-//     const [isPlaying, setIsPlaying] = useState(false);
-//     const videoRef = useRef(null);
-
-//     useEffect(() => {
-//         if (!isPlaying) return;
-
-//         const timer = setTimeout(() => {
-//             videoRef.current?.play();
-//         }, 700);
-
-//         return () => clearTimeout(timer);
-//     }, [isPlaying]);
-
-//     return (
-//         <section className="showreel relative overflow-hidden">
-//             <div className="showreel-image" />
-
-//             <div className="showreel-overlay">
-//                 <h2>
-//                     SHOW REEL
-//                     <br />
-//                 </h2>
-
-//                 <div className="mb-6 mt-6 flex items-center gap-4">
-//                     <span className="h-px w-10 bg-white/50" />
-
-//                     <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-white/80 sm:text-xs md:text-sm">
-//                         A GLIMPSE OF MY SHORT FILMS
-//                     </p>
-
-//                     <span className="h-px w-10 bg-white/50" />
-//                 </div>
-
-//                 <button
-//                     onClick={() => setIsPlaying(true)}
-//                     className="group flex items-center gap-3"
-//                 >
-//                     PLAY REEL
-//                     <span className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-//                         ↗
-//                     </span>
-//                 </button>
-//             </div>
-
-//             {isPlaying && (
-//                 <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/90 p-6 animate-[fadeIn_700ms_ease-out_forwards]">
-//                     <div className="relative w-full max-w-5xl opacity-0 scale-[0.96] animate-[videoReveal_700ms_ease-out_100ms_forwards]">
-//                         <button
-//                             onClick={() => {
-//                                 videoRef.current?.pause();
-//                                 setIsPlaying(false);
-//                             }}
-//                             className="absolute -right-2 -top-12 z-30 text-2xl text-white opacity-70 transition-opacity hover:opacity-100"
-//                         >
-//                             ✕
-//                         </button>
-
-//                         <video
-//                             ref={videoRef}
-//                             src="/reel.mp4"
-//                             controls
-//                             playsInline
-//                             className="max-h-[80vh] w-full object-contain"
-//                         />
-//                     </div>
-//                 </div>
-//             )}
-
-//             <style jsx>{`
-//                 @keyframes fadeIn {
-//                     from {
-//                         opacity: 0;
-//                     }
-//                     to {
-//                         opacity: 1;
-//                     }
-//                 }
-
-//                 @keyframes videoReveal {
-//                     from {
-//                         opacity: 0;
-//                         transform: scale(0.96);
-//                     }
-//                     to {
-//                         opacity: 1;
-//                         transform: scale(1);
-//                     }
-//                 }
-//             `}</style>
-//         </section>
-//     );
-// }
 
 const skills = ['DIRECTION', 'CINEMATOGRAPHY', 'PHOTOGRAPHY', 'EDITING', 'SCRIPTWRITING', 'THEATRE']
 
@@ -229,15 +137,15 @@ export default function Page() {
   const [intro, setIntro] = useState(true)
   const [menu, setMenu] = useState(false)
   const [activeSkill, setActiveSkill] = useState('DIRECTION')
+  const endIntro = useCallback(() => setIntro(false), [])
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIntro(false), 2100)
-    return () => window.clearTimeout(timer)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setIntro(false)
   }, [])
 
   return (
     <main className="portfolio-shell">
-      {intro && <div className="intro" aria-label="Entering Shravani Pujar portfolio"><span>SHRAVANI PUJAR</span><small>DIGITAL FILMMAKER</small><i /></div>}
+      {intro && <FilmIntro onDone={endIntro} />}
 
       <header className="site-nav">
         <Link href="#top" className="wordmark">SHRAVANI PUJAR</Link>
@@ -249,7 +157,7 @@ export default function Page() {
 
       {menu && <div className="menu-overlay"><button className="close-button" onClick={() => setMenu(false)} aria-label="Close menu">CLOSE <span>×</span></button><div className="menu-links">{['WORK', 'ABOUT', 'PHOTOGRAPHY', 'EDITING', 'CONTACT'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenu(false)}>{item}<em>↗</em></a>)}</div><p>Digital filmmaker / visual artist<br />Ahmedabad, India</p></div>}
 
-      <section id="top" className="hero">
+      <section id="top" className={`hero${intro ? '' : ' is-revealed'}`}>
         <div className="hero-image" />
         <div className="hero-shade" />
         <div className="hero-copy">
@@ -285,7 +193,7 @@ export default function Page() {
         </div>
         {/* <div className="hero-copy"><p className="eyebrow">MEET THE ARTIST</p><h1 className='!font-black'>PORTFOLIO<br /></h1><p className="hero-note">Stories for people to see,<br />feel and remember.</p></div> */}
         <div className="hero-footer"><span>FILMMAKER / DIRECTOR / EDITOR / PHOTOGRAPHER</span><a href="#work">SCROLL TO EXPLORE <b>↓</b></a></div>
-        <div className="frame-mark">01 <span>/</span> 07</div>
+        {/* <div className="frame-mark">01 <span>/</span> 07</div> */}
       </section>
 
       <section
@@ -304,7 +212,7 @@ export default function Page() {
               </a>
 
               <a
-                href="#works"
+                href="#work"
                 className="transition-colors hover:text-white"
               >
                 WORKS
@@ -474,30 +382,14 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* <section id="about" className="about section-pad"><p className="section-kicker">01 — ABOUT MYSELF</p><div className="about-grid"><h2>Turning simple ideas<br />into stories people can<br /><i>see, feel and remember.</i></h2><div className="about-body"><p>I&apos;m a Digital Filmmaking student who loves turning simple ideas into stories people can see, feel, and remember.</p><p>My journey has taken me through direction, cinematography, photography, editing, scriptwriting, and theatre — giving me a chance to understand storytelling from different perspectives.</p><p>For me, filmmaking isn&apos;t just about creating something that looks good. It&apos;s about creating something that makes people pause, feel something, or see an idea differently.</p><a href="#contact" className="text-link">MORE ABOUT ME <span>↗</span></a></div></div></section> */}
 
       <ShowReel />
-      {/* <section className="showreel"><div className="showreel-image" /><div className="showreel-overlay">
-                <h2>SHOW REEL<br /></h2>
-                <div className="mb-6 mt-6 flex items-center gap-4">
-                    <span className="h-px w-10 bg-white/50" />
 
-                    <p className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.4em] font-medium text-white/80">
-                        A GLIMPSE OF MY SHORT FILMS
-                    </p>
-
-                    <span className="h-px w-10 bg-white/50" />
-                </div>
-                <button>PLAY REEL <span>↗</span></button></div>
-            </section> */}
-
-
-      {/* <section id="work" className="works section-pad"><div className="works-head"><p className="section-kicker">03 — SELECTED WORKS</p><p className="muted">A collection of quiet moments,<br />human connection and memory.</p></div><div className="work-list">{works.map((work) => <Link className="work-row" href={`/work/${work.slug}`} key={work.slug}><span className="work-no">{work.number}</span><div className="work-title">{work.title.split('\n').map((line) => <span key={line}>{line}</span>)}<small>{work.tag}</small></div><div className="work-thumb"><img src={work.image} alt="" /></div><span className="arrow">↗</span></Link>)}</div></section> */}
 
       <section id="work" className="works section-pad">
         {/* Header */}
         <div className="works-head">
-          <p className="section-kicker">03 — SELECTED WORKS</p>
+          <p className="section-kicker">WORKS</p>
 
           <p className="muted">
             A collection of quiet moments,
@@ -662,13 +554,418 @@ export default function Page() {
           ))}
         </div>
       </section>
-      <section id="photography" className="photography section-pad"><div className="works-head"><p className="section-kicker">04 — PHOTOGRAPHY</p><p className="muted">Soft light. Gentle shadows.<br />A world observed with care.</p></div><div className="photo-grid"><figure className="photo-tall"><img src="/images/flamingos.png" alt="Flamingos standing in shallow water" /><figcaption>WILDLIFE PHOTOGRAPHY <span>01 / 03</span></figcaption></figure><div className="photo-list">{['HAND STITCHED GARMENT', 'SOFT GIRL ERA', 'PRODUCT PHOTOGRAPHY', 'PARTY THEMED PHOTOSHOOT', 'NAARI PHOTOSHOOT', 'VINTAGE PHOTOSHOOT'].map((item, index) => <button key={item} onMouseEnter={() => setActiveSkill(item)} className={activeSkill === item ? 'active' : ''}><span>{String(index + 1).padStart(2, '0')}</span>{item}<b>↗</b></button>)}</div></div></section>
 
-      <section id="editing" className="editing"><p className="section-kicker">05 — EDITING</p><h2>THE CUT<br /><i>IS THE STORY.</i></h2><p>Shaping rhythm, silence and movement through the edit.</p></section>
+      <section id="photography" className="photography section-pad">
+        {/* Header */}
+        <div className="works-head">
+          <p className="section-kicker">04 — PHOTOGRAPHY</p>
 
-      <section className="skills section-pad"><p className="section-kicker">06 — CREATIVE PRACTICE</p><div className="skills-list">{skills.map((skill, index) => <button key={skill} onMouseEnter={() => setActiveSkill(skill)} className={activeSkill === skill ? 'active' : ''}><span>0{index + 1}</span>{skill}<b>+</b></button>)}</div></section>
+          <p className="muted">
+            Soft light. Gentle shadows.
+            <br />
+            A world observed with care.
+          </p>
+        </div>
 
-      <footer id="contact" className="contact"><p className="section-kicker">07 — GET IN TOUCH</p><h2>LET&apos;S TELL<br /><i>A STORY.</i></h2><a className="contact-link" href="mailto:shravanip.0924@gmail.com">shravanip.0924@gmail.com <span>↗</span></a><a className="phone" href="tel:+917016188878">+91 7016188878</a><div className="footer-bottom"><span>© 2024 SHRAVANI PUJAR</span><span>MADE WITH CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+        {/* Photography Grid */}
+        <div className="mt-14 grid grid-cols-1 gap-4 lg:mt-[70px] lg:grid-cols-12 lg:gap-5">
+
+          {/* Photography */}
+          <Link
+            href="/photography"
+            className="group relative block overflow-hidden lg:col-span-7"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden bg-black lg:aspect-[16/10]">
+
+              <img
+                src="/images/photography/cover.jpg"
+                alt="Photography"
+                className="
+            absolute inset-0 h-full w-full object-cover
+            scale-100
+            transition-all duration-1000
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:scale-[1.07]
+            group-hover:saturate-[0.8]
+          "
+              />
+
+              {/* Overlay */}
+              <div
+                className="
+            absolute inset-0
+            bg-gradient-to-t
+            from-black/85
+            via-black/25
+            to-black/5
+            opacity-0
+            transition-opacity duration-700
+            group-hover:opacity-100
+            max-sm:opacity-70
+          "
+              />
+
+              {/* Number */}
+              <span
+                className="
+            absolute left-5 top-5
+            text-[10px] tracking-[0.12em]
+            text-white/80
+            opacity-0
+            -translate-y-2
+            transition-all duration-500
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                01
+              </span>
+
+              {/* Arrow */}
+              <span
+                className="
+            absolute right-5 top-5
+            flex h-10 w-10 items-center justify-center
+            rounded-full
+            border border-white/50
+            text-lg text-white
+            opacity-0
+            translate-x-[-8px]
+            translate-y-[8px]
+            rotate-[-20deg]
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-x-0
+            group-hover:translate-y-0
+            group-hover:rotate-0
+            group-hover:opacity-100
+            group-hover:bg-white/10
+            max-sm:h-9
+            max-sm:w-9
+            max-sm:translate-x-0
+            max-sm:translate-y-0
+            max-sm:rotate-0
+            max-sm:opacity-100
+          "
+              >
+                ↗
+              </span>
+
+              {/* Content */}
+              <div
+                className="
+            absolute bottom-6 left-6 right-6
+            translate-y-8
+            opacity-0
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-white/65">
+                  PORTRAIT · FASHION · PRODUCT
+                </p>
+
+                <h3
+                  className="
+              text-[34px]
+              font-medium
+              leading-[0.9]
+              tracking-[-0.05em]
+              text-white
+              sm:text-[40px]
+              lg:text-[clamp(35px,4vw,62px)]
+            "
+                >
+                  Photography
+                </h3>
+
+                <span
+                  className="
+              mt-5 inline-block
+              border-b border-white/60
+              pb-1
+              text-[9px]
+              tracking-[0.18em]
+              text-white
+            "
+                >
+                  EXPLORE COLLECTION
+                </span>
+              </div>
+            </div>
+          </Link>
+
+
+          {/* Wildlife */}
+          <Link
+            href="/wildlife"
+            className="group relative block overflow-hidden lg:col-span-5"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden bg-black lg:aspect-[16/10]">
+
+              <img
+                src="/images/wildlife/cover.jpg"
+                alt="Wildlife Photography"
+                className="
+            absolute inset-0 h-full w-full object-cover
+            scale-100
+            transition-all duration-1000
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:scale-[1.07]
+            group-hover:saturate-[0.8]
+          "
+              />
+
+              <div
+                className="
+            absolute inset-0
+            bg-gradient-to-t
+            from-black/85
+            via-black/25
+            to-black/5
+            opacity-0
+            transition-opacity duration-700
+            group-hover:opacity-100
+            max-sm:opacity-70
+          "
+              />
+
+              <span
+                className="
+            absolute left-5 top-5
+            text-[10px] tracking-[0.12em]
+            text-white/80
+            opacity-0
+            -translate-y-2
+            transition-all duration-500
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                02
+              </span>
+
+              <span
+                className="
+            absolute right-5 top-5
+            flex h-10 w-10 items-center justify-center
+            rounded-full
+            border border-white/50
+            text-lg text-white
+            opacity-0
+            translate-x-[-8px]
+            translate-y-[8px]
+            rotate-[-20deg]
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-x-0
+            group-hover:translate-y-0
+            group-hover:rotate-0
+            group-hover:opacity-100
+            group-hover:bg-white/10
+            max-sm:h-9
+            max-sm:w-9
+            max-sm:translate-x-0
+            max-sm:translate-y-0
+            max-sm:rotate-0
+            max-sm:opacity-100
+          "
+              >
+                ↗
+              </span>
+
+              <div
+                className="
+            absolute bottom-6 left-6 right-6
+            translate-y-8
+            opacity-0
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-white/65">
+                  WILDLIFE · NATURE
+                </p>
+
+                <h3
+                  className="
+              text-[32px]
+              font-medium
+              leading-[0.88]
+              tracking-[-0.05em]
+              text-white
+              sm:text-[38px]
+              lg:text-[clamp(30px,3vw,50px)]
+            "
+                >
+                  Wildlife
+                  <br />
+                  Photography
+                </h3>
+
+                <span
+                  className="
+              mt-5 inline-block
+              border-b border-white/60
+              pb-1
+              text-[9px]
+              tracking-[0.18em]
+              text-white
+            "
+                >
+                  EXPLORE COLLECTION
+                </span>
+              </div>
+            </div>
+          </Link>
+
+
+          {/* Editing */}
+          <Link
+            href="/editing"
+            className="group relative block overflow-hidden lg:col-span-7"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden bg-black lg:aspect-[16/10]">
+
+              <img
+                src="/images/editing/cover.jpg"
+                alt="Editing"
+                className="
+            absolute inset-0 h-full w-full object-cover
+            scale-100
+            transition-all duration-1000
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:scale-[1.07]
+            group-hover:saturate-[0.8]
+          "
+              />
+
+              <div
+                className="
+            absolute inset-0
+            bg-gradient-to-t
+            from-black/85
+            via-black/25
+            to-black/5
+            opacity-0
+            transition-opacity duration-700
+            group-hover:opacity-100
+            max-sm:opacity-70
+          "
+              />
+
+              <span
+                className="
+            absolute left-5 top-5
+            text-[10px] tracking-[0.12em]
+            text-white/80
+            opacity-0
+            -translate-y-2
+            transition-all duration-500
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                03
+              </span>
+
+              <span
+                className="
+            absolute right-5 top-5
+            flex h-10 w-10 items-center justify-center
+            rounded-full
+            border border-white/50
+            text-lg text-white
+            opacity-0
+            translate-x-[-8px]
+            translate-y-[8px]
+            rotate-[-20deg]
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-x-0
+            group-hover:translate-y-0
+            group-hover:rotate-0
+            group-hover:opacity-100
+            group-hover:bg-white/10
+            max-sm:h-9
+            max-sm:w-9
+            max-sm:translate-x-0
+            max-sm:translate-y-0
+            max-sm:rotate-0
+            max-sm:opacity-100
+          "
+              >
+                ↗
+              </span>
+
+              <div
+                className="
+            absolute bottom-6 left-6 right-6
+            translate-y-8
+            opacity-0
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-white/65">
+                  COLOR · RETOUCHING · EXPERIMENTS
+                </p>
+
+                <h3
+                  className="
+              text-[34px]
+              font-medium
+              leading-[0.9]
+              tracking-[-0.05em]
+              text-white
+              sm:text-[40px]
+              lg:text-[clamp(35px,4vw,62px)]
+            "
+                >
+                  Editing
+                </h3>
+
+                <span
+                  className="
+              mt-5 inline-block
+              border-b border-white/60
+              pb-1
+              text-[9px]
+              tracking-[0.18em]
+              text-white
+            "
+                >
+                  EXPLORE COLLECTION
+                </span>
+              </div>
+            </div>
+          </Link>
+
+        </div>
+      </section>
+      {/* <section id="editing" className="editing"><p className="section-kicker">05 — EDITING</p><h2>THE CUT<br /><i>IS THE STORY.</i></h2><p>Shaping rhythm, silence and movement through the edit.</p></section> */}
+
+      {/* <section className="skills section-pad"><p className="section-kicker">06 — CREATIVE PRACTICE</p><div className="skills-list">{skills.map((skill, index) => <button key={skill} onMouseEnter={() => setActiveSkill(skill)} className={activeSkill === skill ? 'active' : ''}><span>0{index + 1}</span>{skill}<b>+</b></button>)}</div></section> */}
+
+      <footer id="contact" className="contact"><p className="section-kicker"> GET IN TOUCH</p><h2>LET&apos;S TELL<br /><i>A STORY.</i></h2><a className="contact-link" href="mailto:shravanip.0924@gmail.com">shravanip.0924@gmail.com <span>↗</span></a><a className="phone" href="tel:+917016188878">+91 7016188878</a><div className="footer-bottom"><span>© 2026 SHRAVANI PUJAR</span><span>MADE WITH CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></div></footer>
     </main>
   )
 }
