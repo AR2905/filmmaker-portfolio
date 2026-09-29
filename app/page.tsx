@@ -3,13 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import FilmIntro from '@/components/film-intro'
+import { works } from '@/data/works'
 
-const works = [
-  { number: '01', title: 'SAWAAN\nKA MAAH', slug: 'sawaan-ka-maah', image: '/images/sawaan-rain.png', tag: 'A poem of distance' },
-  { number: '02', title: 'CHHAVI', slug: 'chhavi', image: '/images/hero-film.png', tag: 'An experiment in stillness' },
-  { number: '03', title: 'KHO GAYE\nTUM KAHAN', slug: 'kho-gaye-tum-kahan', image: '/images/hero-film.png', tag: 'A story about memory' },
-  { number: '04', title: 'SHAAM JO\nBAAKI THI', slug: 'shaam-jo-baaki-thi', image: '/images/sawaan-rain.png', tag: 'Two lonely souls' },
-]
 function ShowReel() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -558,7 +553,7 @@ export default function Page() {
       <section id="photography" className="photography section-pad">
         {/* Header */}
         <div className="works-head">
-          <p className="section-kicker">04 — PHOTOGRAPHY</p>
+          <p className="section-kicker">PHOTOGRAPHY</p>
 
           <p className="muted">
             Soft light. Gentle shadows.

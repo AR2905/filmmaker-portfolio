@@ -22,14 +22,14 @@ export default function EditingPage() {
         <main className="min-h-screen overflow-hidden bg-[#eee9e1] text-[#171717]">
 
             {/* =========================================
-          HERO
-      ========================================= */}
+                HERO
+            ========================================= */}
 
-            <section className="px-6 pb-24 pt-8 sm:px-10 lg:px-16 lg:pb-32">
+            <section className="relative px-6 pb-20 pt-6 sm:px-10 lg:px-16 lg:pb-24">
 
                 <Link
                     href="/#photography"
-                    className="group mb-24 inline-flex items-center gap-3 text-[10px] tracking-[0.18em] text-black/50 transition-colors hover:text-black sm:mb-32"
+                    className="group mb-10 inline-flex items-center gap-3 text-[10px] tracking-[0.18em] text-black/50 transition-colors hover:text-black sm:mb-14"
                 >
                     <span className="transition-transform duration-500 group-hover:-translate-x-1">
                         ←
@@ -39,60 +39,240 @@ export default function EditingPage() {
                 </Link>
 
 
-                <motion.div
-                    initial={{
-                        opacity: 0,
-                        y: 50,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        y: 0,
-                    }}
-                    transition={{
-                        duration: 1,
-                        ease,
-                    }}
-                >
+                <div className="grid items-end gap-10 lg:grid-cols-12">
 
-                    <p className="mb-7 text-[10px] tracking-[0.2em] text-black/35">
-                        04 — EDITING
-                    </p>
+                    {/* TITLE */}
 
-                    <h1 className="max-w-6xl text-[clamp(70px,13vw,190px)] font-medium leading-[0.75] tracking-[-0.08em]">
-                        Edited
-                        <br />
-                        <span className="font-normal italic">
-                            worlds.
-                        </span>
-                    </h1>
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            y: 35,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                        }}
+                        transition={{
+                            duration: 0.9,
+                            ease,
+                        }}
+                        className="lg:col-span-5"
+                    >
 
-                    <div className="mt-12 flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
-
-                        <p className="max-w-md text-sm leading-7 text-black/45">
-                            A visual collection shaped through colour,
-                            contrast, atmosphere and transformation.
+                        <p className="mb-5 text-[10px] tracking-[0.2em] text-black/35">
+                            04 — EDITING
                         </p>
 
-                        <span className="text-[9px] tracking-[0.18em] text-black/30">
-                            EDITING — 01
-                        </span>
+                        <h1 className="text-[clamp(58px,9vw,135px)] font-medium leading-[0.76] tracking-[-0.08em]">
+                            Edited
+                            <br />
+                            <span className="font-normal italic">
+                                worlds.
+                            </span>
+                        </h1>
+
+                        <div className="mt-8 flex items-end justify-between gap-6">
+
+                            <p className="max-w-sm text-sm leading-6 text-black/45">
+                                Colour, contrast, atmosphere and transformation
+                                shaped through visual experimentation.
+                            </p>
+
+                            <span className="shrink-0 text-[9px] tracking-[0.18em] text-black/30">
+                                08 IMAGES
+                            </span>
+
+                        </div>
+
+                    </motion.div>
+
+
+                    {/* IMAGE PREVIEW */}
+
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            y: 40,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                        }}
+                        transition={{
+                            duration: 1,
+                            delay: 0.15,
+                            ease,
+                        }}
+                        className="lg:col-span-7"
+                    >
+
+                        <div className="grid grid-cols-12 items-end gap-3">
+
+                            {/* LARGE */}
+
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    scale: 0.96,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: 1,
+                                }}
+                                transition={{
+                                    duration: 1.1,
+                                    delay: 0.2,
+                                    ease,
+                                }}
+                                className="group relative col-span-7 overflow-hidden"
+                            >
+
+                                <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                                    <Image
+                                        src="/images/editing/01.jpg"
+                                        alt="Editing work 01"
+                                        fill
+                                        priority
+                                        sizes="(max-width: 1024px) 60vw, 40vw"
+                                        className="object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                                    />
+
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+
+                                    <span className="absolute bottom-4 left-4 text-[9px] tracking-[0.16em] text-white">
+                                        EDIT — 01
+                                    </span>
+
+                                </div>
+
+                            </motion.div>
+
+
+                            {/* TOP */}
+
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    y: 25,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                transition={{
+                                    duration: 0.9,
+                                    delay: 0.35,
+                                    ease,
+                                }}
+                                className="group col-span-5 mb-14 overflow-hidden"
+                            >
+
+                                <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                                    <Image
+                                        src="/images/editing/02.jpg"
+                                        alt="Editing work 02"
+                                        fill
+                                        sizes="30vw"
+                                        className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                                    />
+
+                                </div>
+
+                            </motion.div>
+
+
+                            {/* BOTTOM */}
+
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    y: 25,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                transition={{
+                                    duration: 0.9,
+                                    delay: 0.5,
+                                    ease,
+                                }}
+                                className="group col-span-5 -mt-10 overflow-hidden"
+                            >
+
+                                <div className="relative aspect-[16/10] overflow-hidden bg-black">
+
+                                    <Image
+                                        src="/images/editing/03.jpg"
+                                        alt="Editing work 03"
+                                        fill
+                                        sizes="30vw"
+                                        className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                                    />
+
+                                </div>
+
+                            </motion.div>
+
+                        </div>
+
+                    </motion.div>
+
+                </div>
+
+
+                {/* MOBILE PREVIEW */}
+
+                <div className="mt-10 grid grid-cols-2 gap-3 lg:hidden">
+
+                    <div className="group relative overflow-hidden">
+
+                        <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                            <Image
+                                src="/images/editing/01.jpg"
+                                alt="Editing work 01"
+                                fill
+                                sizes="50vw"
+                                className="object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                            />
+
+                        </div>
 
                     </div>
 
-                </motion.div>
+                    <div className="group relative mt-8 overflow-hidden">
+
+                        <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                            <Image
+                                src="/images/editing/02.jpg"
+                                alt="Editing work 02"
+                                fill
+                                sizes="50vw"
+                                className="object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                            />
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </section>
 
 
             {/* =========================================
-          EDITING GALLERY
-      ========================================= */}
+                GALLERY
+            ========================================= */}
 
-            <section className="px-6 pb-36 sm:px-10 lg:px-16">
+            <section className="px-6 pb-28 sm:px-10 lg:px-16">
 
                 <div className="border-t border-black/10 pt-5">
 
-                    <div className="mb-12 flex items-start justify-between gap-5">
+                    <div className="mb-10 flex items-start justify-between gap-5">
 
                         <div className="flex gap-5">
 
@@ -122,9 +302,7 @@ export default function EditingPage() {
                     </div>
 
 
-                    {/* =====================================
-              EDITING GRID
-          ===================================== */}
+                    {/* GRID */}
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
 
@@ -148,6 +326,7 @@ export default function EditingPage() {
                                                             : "lg:col-span-7";
 
                             return (
+
                                 <motion.div
                                     key={image}
                                     initial={{
@@ -172,12 +351,12 @@ export default function EditingPage() {
 
                                     <div
                                         className={`
-                      relative overflow-hidden bg-black
-                      ${index % 3 === 0
+                                            relative overflow-hidden bg-black
+                                            ${index % 3 === 0
                                                 ? "aspect-[4/3]"
                                                 : "aspect-[4/5]"
                                             }
-                    `}
+                                        `}
                                     >
 
                                         <Image
@@ -188,15 +367,12 @@ export default function EditingPage() {
                                             className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045]"
                                         />
 
-                                        {/* Hover */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-600 group-hover:opacity-100" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                                        {/* Image number */}
                                         <span className="absolute bottom-5 left-5 text-[9px] tracking-[0.16em] text-white opacity-0 transition-all duration-500 group-hover:opacity-100">
                                             EDIT {String(index + 1).padStart(2, "0")}
                                         </span>
 
-                                        {/* Arrow */}
                                         <span className="absolute right-5 top-5 flex h-10 w-10 translate-x-2 -translate-y-2 rotate-[-20deg] items-center justify-center rounded-full border border-white/50 text-white opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:translate-y-0 group-hover:rotate-0 group-hover:opacity-100">
                                             ↗
                                         </span>
@@ -204,6 +380,7 @@ export default function EditingPage() {
                                     </div>
 
                                 </motion.div>
+
                             );
                         })}
 
@@ -214,9 +391,9 @@ export default function EditingPage() {
             </section>
 
 
-            {/* Footer */}
+            {/* FOOTER */}
 
-            <section className="border-t border-black/10 px-6 py-16 sm:px-10 lg:px-16">
+            <section className="border-t border-black/10 px-6 py-14 sm:px-10 lg:px-16">
 
                 <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
 
@@ -233,6 +410,7 @@ export default function EditingPage() {
                         <span className="transition-transform duration-500 group-hover:translate-x-1">
                             ↗
                         </span>
+
                     </Link>
 
                 </div>

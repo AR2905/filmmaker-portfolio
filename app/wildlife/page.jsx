@@ -29,14 +29,14 @@ export default function WildlifePage() {
         <main className="min-h-screen overflow-hidden bg-[#17140f] text-[#f2ede5]">
 
             {/* =========================================
-          HERO
-      ========================================= */}
+                HERO
+            ========================================= */}
 
-            <section className="px-6 pb-28 pt-8 sm:px-10 lg:px-16 lg:pb-36">
+            <section className="relative px-6 pb-20 pt-6 sm:px-10 lg:px-16 lg:pb-24">
 
                 <Link
                     href="/#photography"
-                    className="group mb-24 inline-flex items-center gap-3 text-[10px] tracking-[0.18em] text-white/50 transition-colors hover:text-white sm:mb-32"
+                    className="group mb-10 inline-flex items-center gap-3 text-[10px] tracking-[0.18em] text-white/50 transition-colors hover:text-white sm:mb-14"
                 >
                     <span className="transition-transform duration-500 group-hover:-translate-x-1">
                         ←
@@ -46,68 +46,255 @@ export default function WildlifePage() {
                 </Link>
 
 
-                <motion.div
-                    initial={{
-                        opacity: 0,
-                        y: 50,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        y: 0,
-                    }}
-                    transition={{
-                        duration: 1,
-                        ease,
-                    }}
-                >
+                <div className="grid items-end gap-10 lg:grid-cols-12">
 
-                    <p className="mb-7 text-[10px] tracking-[0.2em] text-white/35">
-                        04 — WILDLIFE PHOTOGRAPHY
-                    </p>
+                    {/* TITLE */}
 
-                    <h1 className="text-[clamp(64px,12vw,180px)] font-medium leading-[0.76] tracking-[-0.075em]">
-                        Wild
-                        <br />
-                        <span className="font-normal italic">
-                            instinct.
-                        </span>
-                    </h1>
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            y: 35,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                        }}
+                        transition={{
+                            duration: 0.9,
+                            ease,
+                        }}
+                        className="lg:col-span-5"
+                    >
 
-                    <div className="mt-12 flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
-
-                        <p className="max-w-md text-sm leading-7 text-white/40">
-                            Quiet encounters, fleeting movement and
-                            moments found beyond the frame.
+                        <p className="mb-5 text-[10px] tracking-[0.2em] text-white/35">
+                            WILDLIFE PHOTOGRAPHY
                         </p>
 
-                        <span className="text-[9px] tracking-[0.18em] text-white/25">
-                            WILDLIFE · NATURE
-                        </span>
+                        <h1 className="text-[clamp(58px,9vw,135px)] font-medium leading-[0.76] tracking-[-0.075em]">
+                            Wild
+                            <br />
+                            <span className="font-normal italic">
+                                instinct.
+                            </span>
+                        </h1>
+
+                        <div className="mt-8 flex items-end justify-between gap-6">
+
+                            <p className="max-w-sm text-sm leading-6 text-white/40">
+                                Quiet encounters, fleeting movement and
+                                moments found beyond the frame.
+                            </p>
+
+                            <span className="shrink-0 text-[9px] tracking-[0.18em] text-white/25">
+                                WILDLIFE · NATURE
+                            </span>
+
+                        </div>
+
+                    </motion.div>
+
+
+                    {/* IMAGE PREVIEW */}
+
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            y: 45,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                        }}
+                        transition={{
+                            duration: 1.1,
+                            delay: 0.15,
+                            ease,
+                        }}
+                        className="lg:col-span-7"
+                    >
+
+                        <div className="grid grid-cols-12 items-end gap-3">
+
+                            {/* MAIN */}
+
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    scale: 0.96,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: 1,
+                                }}
+                                transition={{
+                                    duration: 1.2,
+                                    delay: 0.2,
+                                    ease,
+                                }}
+                                className="group relative col-span-7 overflow-hidden"
+                            >
+
+                                <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                                    <Image
+                                        src="/images/wildlife/main/01.jpg"
+                                        alt="Wildlife photography"
+                                        fill
+                                        priority
+                                        sizes="(max-width: 1024px) 60vw, 40vw"
+                                        className="object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045]"
+                                    />
+
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+
+                                    <span className="absolute bottom-4 left-4 text-[9px] tracking-[0.16em] text-white">
+                                        01 — WILDLIFE
+                                    </span>
+
+                                </div>
+
+                            </motion.div>
+
+
+                            {/* TOP RIGHT */}
+
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    y: 25,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                transition={{
+                                    duration: 0.9,
+                                    delay: 0.35,
+                                    ease,
+                                }}
+                                className="group col-span-5 mb-12 overflow-hidden"
+                            >
+
+                                <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                                    <Image
+                                        src="/images/wildlife/main/02.jpg"
+                                        alt="Wildlife photography 02"
+                                        fill
+                                        sizes="30vw"
+                                        className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.06]"
+                                    />
+
+                                </div>
+
+                            </motion.div>
+
+
+                            {/* BOTTOM RIGHT */}
+
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    y: 25,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                transition={{
+                                    duration: 0.9,
+                                    delay: 0.5,
+                                    ease,
+                                }}
+                                className="group col-span-5 -mt-8 overflow-hidden"
+                            >
+
+                                <div className="relative aspect-[16/10] overflow-hidden bg-black">
+
+                                    <Image
+                                        src="/images/wildlife/main/03.jpg"
+                                        alt="Wildlife photography 03"
+                                        fill
+                                        sizes="30vw"
+                                        className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.06]"
+                                    />
+
+                                </div>
+
+                            </motion.div>
+
+                        </div>
+
+                    </motion.div>
+
+                </div>
+
+
+                {/* MOBILE */}
+
+                <div className="mt-10 grid grid-cols-2 gap-3 lg:hidden">
+
+                    <div className="group relative overflow-hidden">
+
+                        <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                            <Image
+                                src="/images/wildlife/main/01.jpg"
+                                alt="Wildlife"
+                                fill
+                                sizes="50vw"
+                                className="object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                            />
+
+                        </div>
 
                     </div>
 
-                </motion.div>
+                    <div className="group relative mt-8 overflow-hidden">
+
+                        <div className="relative aspect-[4/5] overflow-hidden bg-black">
+
+                            <Image
+                                src="/images/wildlife/main/02.jpg"
+                                alt="Wildlife"
+                                fill
+                                sizes="50vw"
+                                className="object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                            />
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </section>
 
 
             {/* =========================================
-          WILDLIFE COLLECTION
-      ========================================= */}
+                WILDLIFE COLLECTION
+            ========================================= */}
 
-            <section className="px-6 pb-36 sm:px-10 lg:px-16">
+            <section className="px-6 pb-28 sm:px-10 lg:px-16">
 
                 <motion.div
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    initial={{
+                        opacity: 0,
+                        y: 50,
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0,
+                    }}
+                    viewport={{
+                        once: true,
+                        margin: "-100px",
+                    }}
                     transition={{
                         duration: 1,
                         ease,
                     }}
                 >
-
-                    {/* Heading */}
 
                     <div className="mb-10 border-t border-white/15 pt-5">
 
@@ -147,9 +334,11 @@ export default function WildlifePage() {
                     </div>
 
 
-                    {/* Featured wildlife image */}
+                    {/* MAIN GRID */}
 
                     <div className="grid grid-cols-1 gap-3 lg:grid-cols-12">
+
+                        {/* LARGE */}
 
                         <motion.div
                             initial={{
@@ -171,11 +360,11 @@ export default function WildlifePage() {
                             <div className="relative aspect-[4/5] overflow-hidden bg-black">
 
                                 <Image
-                                    src={`/images/wildlife/main/${wildlifeImages[0]}`}
+                                    src="/images/wildlife/main/01.jpg"
                                     alt="Wildlife photography"
                                     fill
-                                    sizes="(max-width: 1024px) 100vw, 60vw"
-                                    className="object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045]"
+                                    sizes="60vw"
+                                    className="object-cover transition-transform duration-[1500ms] group-hover:scale-[1.045]"
                                 />
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
@@ -185,11 +374,11 @@ export default function WildlifePage() {
                         </motion.div>
 
 
-                        {/* Remaining images */}
+                        {/* SMALL IMAGES */}
 
                         <div className="grid grid-cols-2 gap-3 lg:col-span-5 lg:grid-cols-1">
 
-                            {wildlifeImages.slice(1).map((image, index) => (
+                            {wildlifeImages.slice(1, 5).map((image, index) => (
 
                                 <motion.div
                                     key={image}
@@ -201,7 +390,9 @@ export default function WildlifePage() {
                                         opacity: 1,
                                         y: 0,
                                     }}
-                                    viewport={{ once: true }}
+                                    viewport={{
+                                        once: true,
+                                    }}
                                     transition={{
                                         duration: 0.8,
                                         delay: index * 0.06,
@@ -216,8 +407,8 @@ export default function WildlifePage() {
                                             src={`/images/wildlife/main/${image}`}
                                             alt={`Wildlife photography ${index + 2}`}
                                             fill
-                                            sizes="(max-width: 1024px) 50vw, 40vw"
-                                            className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                                            sizes="40vw"
+                                            className="object-cover transition-transform duration-[1200ms] group-hover:scale-[1.06]"
                                         />
 
                                     </div>
@@ -234,13 +425,13 @@ export default function WildlifePage() {
 
 
                 {/* =========================================
-            FLAMINGOS
-        ========================================= */}
+                    FLAMINGOS
+                ========================================= */}
 
                 <motion.section
                     initial={{
                         opacity: 0,
-                        y: 70,
+                        y: 60,
                     }}
                     whileInView={{
                         opacity: 1,
@@ -254,7 +445,7 @@ export default function WildlifePage() {
                         duration: 1,
                         ease,
                     }}
-                    className="mt-40"
+                    className="mt-28 lg:mt-36"
                 >
 
                     <div className="mb-10 border-t border-white/15 pt-5">
@@ -291,7 +482,7 @@ export default function WildlifePage() {
                     </div>
 
 
-                    {/* Flamingo grid */}
+                    {/* FLAMINGO GRID */}
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-12">
 
@@ -317,8 +508,8 @@ export default function WildlifePage() {
                                     ease,
                                 }}
                                 className={`
-                  group relative overflow-hidden
-                  ${index === 0
+                                    group relative overflow-hidden
+                                    ${index === 0
                                         ? "lg:col-span-7"
                                         : index === 1
                                             ? "lg:col-span-5"
@@ -326,25 +517,25 @@ export default function WildlifePage() {
                                                 ? "lg:col-span-5"
                                                 : "lg:col-span-7"
                                     }
-                `}
+                                `}
                             >
 
                                 <div
                                     className={`
-                    relative overflow-hidden bg-black
-                    ${index === 0 || index === 3
+                                        relative overflow-hidden bg-black
+                                        ${index === 0 || index === 3
                                             ? "aspect-[16/10]"
                                             : "aspect-[4/5]"
                                         }
-                  `}
+                                    `}
                                 >
 
                                     <Image
                                         src={`/images/wildlife/flamingos/${image}`}
                                         alt={`Flamingo photography ${index + 1}`}
                                         fill
-                                        sizes="(max-width: 1024px) 100vw, 60vw"
-                                        className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                                        sizes="60vw"
+                                        className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.05]"
                                     />
 
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-600 group-hover:opacity-100" />
@@ -366,19 +557,21 @@ export default function WildlifePage() {
             </section>
 
 
-            {/* Footer */}
+            {/* FOOTER */}
 
-            <section className="border-t border-white/10 px-6 py-16 sm:px-10 lg:px-16">
+            <section className="border-t border-white/10 px-6 py-14 sm:px-10 lg:px-16">
 
                 <Link
                     href="/#photography"
                     className="group inline-flex items-center gap-3 text-[10px] tracking-[0.16em] text-white/50 transition-colors hover:text-white"
                 >
+
                     <span className="transition-transform duration-500 group-hover:-translate-x-1">
                         ←
                     </span>
 
                     BACK TO PHOTOGRAPHY
+
                 </Link>
 
             </section>
