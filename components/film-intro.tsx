@@ -6,11 +6,15 @@ import '@/app/film-intro.css'
 const LEADERS = ['3', '2', '1']
 const LEADER_STEP = 1250
 const LEADER_AT = 900
-const EXIT_AT = 12800
+const LEADER_END = LEADER_AT + LEADERS.length * LEADER_STEP
+const SCREEN_DUR = 14000
+const EXIT_AT = LEADER_END + SCREEN_DUR
 const EXIT_DUR = 950
 const UNMOUNT_AT = EXIT_AT + EXIT_DUR
-const TITLE_AT = 8
-const CREDITS_AT = 10.8
+const TITLE_AT = 8.6
+const CREDITS_AT = 13.4
+const INTRO_AUDIO = '/intro.mp3'
+const INTRO_AUDIO_LEVEL = 0.75
 const TITLE = ['SHRAVANI', 'PUJAR']
 const CREDITS = [
   'A FILM BY SHRAVANI PUJAR',
@@ -30,6 +34,9 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
   const [exiting, setExiting] = useState(false)
   const barRef = useRef<HTMLElement>(null)
   const codeRef = useRef<HTMLSpanElement>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const soundingRef = useRef(false)
+  const waitingRef = useRef(true)
   const timers = useRef<number[]>([])
   const doneRef = useRef(onDone)
   doneRef.current = onDone
@@ -37,6 +44,12 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
   const finish = useCallback(() => {
     timers.current.forEach(window.clearTimeout)
     timers.current = []
+    waitingRef.current = false
+    const audio = audioRef.current
+    if (audio) {
+      audio.pause()
+      audio.currentTime = 0
+    }
     setExiting(true)
     timers.current.push(
       window.setTimeout(() => doneRef.current(), EXIT_DUR),
@@ -54,8 +67,45 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
     const at = (fn: () => void, delay: number) =>
       timers.current.push(window.setTimeout(fn, delay))
 
+    /* The leader plays silent. The track drops in the frame the numbers clear
+       and is loaded up front so it is already buffered by then. */
+    const audio = new Audio(INTRO_AUDIO)
+    audio.preload = 'auto'
+    audio.volume = INTRO_AUDIO_LEVEL
+    audioRef.current = audio
+
+    const sound = (offset: number) => {
+      if (soundingRef.current || offset >= SCREEN_DUR) return
+      audio.currentTime = Math.min(offset, SCREEN_DUR - 250) / 1000
+      const played = audio.play()
+      if (!played) return
+      played
+        .then(() => {
+          soundingRef.current = true
+          waitingRef.current = false
+        })
+        .catch((error: unknown) => {
+          /* Autoplay policies hold the first attempt back until a gesture.
+             Anything else (a missing or undecodable file) is not worth
+             retrying, so stop chasing it. */
+          if ((error as DOMException)?.name === 'NotAllowedError') return
+          waitingRef.current = false
+        })
+    }
+
+    const unlock = () => {
+      if (soundingRef.current || !waitingRef.current) return
+      const elapsed = performance.now() - start
+      if (elapsed < LEADER_END) return
+      sound(elapsed - LEADER_END)
+    }
+
+    const gestures: Array<keyof WindowEventMap> = ['pointerdown', 'touchstart', 'keydown']
+    gestures.forEach((type) => window.addEventListener(type, unlock))
+
     LEADERS.forEach((_, i) => at(() => setStep(i), LEADER_AT + i * LEADER_STEP))
-    at(() => setStep(-1), LEADER_AT + LEADERS.length * LEADER_STEP)
+    at(() => setStep(-1), LEADER_END)
+    at(() => sound(0), LEADER_END)
     at(() => setExiting(true), EXIT_AT)
     at(() => doneRef.current(), UNMOUNT_AT)
 
@@ -73,7 +123,10 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
     return () => {
       timers.current.forEach(window.clearTimeout)
       timers.current = []
+      gestures.forEach((type) => window.removeEventListener(type, unlock))
       cancelAnimationFrame(frame)
+      audio.pause()
+      audioRef.current = null
       document.body.style.overflow = ''
     }
   }, [])
@@ -132,7 +185,7 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
                 <span
                   className="fi-char"
                   key={`${word}-${i}`}
-                  style={{ animationDelay: `${(TITLE_AT + w * 0.28 + i * 0.07).toFixed(2)}s` }}
+                  style={{ animationDelay: `${(TITLE_AT + w * 0.3 + i * 0.075).toFixed(3)}s` }}
                 >
                   {char}
                 </span>
@@ -144,7 +197,7 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
         <p className="fi-sub">DIGITAL FILMMAKER</p>
         <ul className="fi-credits">
           {CREDITS.map((credit, i) => (
-            <li key={credit} style={{ animationDelay: `${(CREDITS_AT + i * 0.32).toFixed(2)}s` }}>{credit}</li>
+            <li key={credit} style={{ animationDelay: `${(CREDITS_AT + i * 0.7).toFixed(2)}s` }}>{credit}</li>
           ))}
         </ul>
       </div>
