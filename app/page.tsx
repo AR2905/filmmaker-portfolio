@@ -54,9 +54,9 @@ function ShowReel() {
         <button
           type="button"
           onClick={() => setIsPlaying(true)}
-          className="group flex items-center gap-3"
+          className="group flex items-center gap-3 "
         >
-          <span>PLAY REEL</span>
+          <span className='text-[20px]'>PLAY REEL</span>
 
           <span className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
             ↗
@@ -128,14 +128,17 @@ function ShowReel() {
 
 const skills = ['DIRECTION', 'CINEMATOGRAPHY', 'PHOTOGRAPHY', 'EDITING', 'SCRIPTWRITING', 'THEATRE']
 
+const ENABLE_FILM_INTRO = false
+
 export default function Page() {
-  const [intro, setIntro] = useState(true)
+  const [intro, setIntro] = useState(ENABLE_FILM_INTRO)
   const [menu, setMenu] = useState(false)
   const [activeSkill, setActiveSkill] = useState('DIRECTION')
   const endIntro = useCallback(() => setIntro(false), [])
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setIntro(false)
+    if (!ENABLE_FILM_INTRO) setIntro(false)
+    if (ENABLE_FILM_INTRO && window.matchMedia('(prefers-reduced-motion: reduce)').matches) setIntro(false)
   }, [])
 
   return (
@@ -158,7 +161,8 @@ export default function Page() {
         <div className="hero-copy">
           <p className="eyebrow">MEET THE ARTIST</p>
 
-          <h1 className="!font-black text-white text-6xl md:text-8xl leading-none">
+          <h1 className="!font-black text-white text-6xl md:text-8xl leading-none transform scale-80 md:scale-100 origin-left">
+
             <span>PO</span>
             <span
               className="text-transparent"
@@ -244,7 +248,7 @@ export default function Page() {
 
                 <img
                   src="/profile-pic.jpeg"
-                  alt="SHRAVANI PUJAR 12S"
+                  alt="SHRAVANI PUJAR"
                   className="relative z-10 max-h-[500px] w-auto object-contain object-bottom"
                 />
               </div>
@@ -384,9 +388,9 @@ export default function Page() {
       <section id="work" className="works section-pad">
         {/* Header */}
         <div className="works-head">
-          <p className="section-kicker">WORKS</p>
+          <p className="section-kicker font-bold !text-[0.8rem]">WORKS</p>
 
-          <p className="muted">
+          <p className="muted font-[900] !text-[0.8rem]">
             A collection of quiet moments,
             <br />
             human connection and memory.
@@ -553,9 +557,9 @@ export default function Page() {
       <section id="photography" className="photography section-pad">
         {/* Header */}
         <div className="works-head">
-          <p className="section-kicker">PHOTOGRAPHY</p>
+          <p className="section-kicker font-[900] !text-[0.8rem]">PHOTOGRAPHY</p>
 
-          <p className="muted">
+          <p className="muted font-[900] !text-[0.8rem]">
             Soft light. Gentle shadows.
             <br />
             A world observed with care.

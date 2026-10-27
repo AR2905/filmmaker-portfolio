@@ -81,7 +81,7 @@ export const works: Work[] = [
         number: "01",
         title: "SAWAAN\nKA MAAH",
         slug: "sawaan-ka-maah",
-        image: "/images/sawaan-rain.png",
+        image: "/images/thumbnail/Sawaan-ka-maah.png",
         tag: "A poem of distance",
 
         kind: "SHORT FILM",
@@ -117,14 +117,30 @@ export const works: Work[] = [
             label: "FULL FILM · 1080P",
         },
 
-        stills: REEL_STILLS,
+        stills: [
+            {
+                src: "/images/works/sawan/2.jpg",
+                alt: "Rain falling through a dark frame",
+                ratio: "wide",
+            },
+            {
+                src: "/images/works/sawan/1.jpg",
+                alt: "A still held on screen, mid shot",
+                ratio: "tall",
+            },
+            {
+                src: "/images/works/sawan/3.jpg",
+                alt: "A quiet horizon at the end of the day",
+                ratio: "square",
+            },
+        ]
     },
 
     {
         number: "02",
         title: "CHHAVI",
         slug: "chhavi",
-        image: "/images/hero-film.png",
+        image: "/images/thumbnail/Chhavi.png",
         tag: "An experiment in stillness",
 
         kind: "SHORT FILM",
@@ -162,17 +178,22 @@ export const works: Work[] = [
 
         stills: [
             {
-                src: "/images/hero-film.png",
+                src: "/images/works/chhavi/4.jpg",
                 alt: "A figure held against a plain wall",
                 ratio: "tall",
             },
             {
-                src: "/images/sawaan-rain.png",
+                src: "/images/works/chhavi/1.jpg",
                 alt: "Light falling across a wet surface",
                 ratio: "wide",
             },
             {
-                src: "/images/flamingos.png",
+                src: "/images/works/chhavi/3.jpg",
+                alt: "A still horizon at dusk",
+                ratio: "square",
+            },
+            {
+                src: "/images/works/chhavi/2.jpg",
                 alt: "A still horizon at dusk",
                 ratio: "square",
             },
@@ -183,7 +204,7 @@ export const works: Work[] = [
         number: "03",
         title: "KHO GAYE\nTUM KAHAN",
         slug: "kho-gaye-tum-kahan",
-        image: "/images/hero-film.png",
+        image: "/images/thumbnail/kho-gaye-tum-kaha.png",
         tag: "A story about memory",
 
         kind: "SHORT FILM",
@@ -212,21 +233,40 @@ export const works: Work[] = [
             { label: "STATUS", value: "IN PRODUCTION" },
         ],
 
-        video: null,
+        video: {
+            src: "https://google.com1nvLHKiWc3C905SBM_Q3jpBzvN7PdfOOD/preview",
+            sizeMb: 99,
+            label: "FULL FILM · 1080P",
+        },
 
         stills: [
             {
-                src: "/images/hero-film.png",
+                src: "/images/works/kho/2.jpg",
                 alt: "An empty hallway, frame held wide",
                 ratio: "wide",
             },
             {
-                src: "/images/sawaan-rain.png",
+                src: "/images/works/kho/1.jpg",
                 alt: "Rain against a dark window",
                 ratio: "tall",
             },
             {
-                src: "/images/flamingos.png",
+                src: "/images/works/kho/4.jpg",
+                alt: "A distance shot at the end of the day",
+                ratio: "square",
+            },
+            {
+                src: "/images/works/kho/3.jpg",
+                alt: "An empty hallway, frame held wide",
+                ratio: "wide",
+            },
+            {
+                src: "/images/works/kho/5.jpg",
+                alt: "Rain against a dark window",
+                ratio: "tall",
+            },
+            {
+                src: "/images/works/kho/6.jpg",
                 alt: "A distance shot at the end of the day",
                 ratio: "square",
             },
@@ -237,7 +277,7 @@ export const works: Work[] = [
         number: "04",
         title: "SHAAM JO\nBAAKI THI",
         slug: "shaam-jo-baaki-thi",
-        image: "/images/sawaan-rain.png",
+        image: "/images/thumbnail/shaam-jo-baki-thi.jpeg",
         tag: "Two lonely souls",
 
         kind: "SHORT FILM",
@@ -270,20 +310,30 @@ export const works: Work[] = [
 
         stills: [
             {
-                src: "/images/sawaan-rain.png",
+                src: "/images/works/shaam/4.jpg",
                 alt: "An empty road at the end of the day",
                 ratio: "wide",
             },
             {
-                src: "/images/flamingos.png",
-                alt: "A figure small against the evening sky",
-                ratio: "tall",
+                src: "/images/works/shaam/1.jpg",
+                alt: "Rain against a dark window",
+                ratio: "wide",
             },
             {
-                src: "/images/hero-film.png",
-                alt: "A street corner held in a long frame",
-                ratio: "square",
+                src: "/images/works/shaam/3.jpg",
+                alt: "Rain against a dark window",
+                ratio: "wide",
             },
+            {
+                src: "/images/works/shaam/2.jpg",
+                alt: "Rain against a dark window",
+                ratio: "wide",
+            },
+            // {
+            //     src: "/images/works/kho/6.jpg",
+            //     alt: "A distance shot at the end of the day",
+            //     ratio: "wide",
+            // },
         ],
     },
 ];
