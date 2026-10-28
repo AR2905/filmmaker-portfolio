@@ -180,7 +180,7 @@ button {
 .showreel-image {
     position: absolute;
     inset: 0;
-    background: url('/bg.png') center/cover;
+    background: url('/bg.jpg') center/cover;
     animation: slowZoom 12s ease-out both;
 }
 
@@ -198,8 +198,9 @@ button {
 
 .eyebrow,
 .section-kicker {
-    font-size: 10px;
+    font-size: 15px;
     letter-spacing: .12em;
+    font-weight: 900;
     color: #a8755f;
     margin: 0 0 30px;
 }
@@ -306,7 +307,7 @@ button {
 }
 
 .showreel {
-    height: 75vh;
+    height: 85vh;
     min-height: 530px;
     position: relative;
     color: #f1eadf;
@@ -315,7 +316,7 @@ button {
 }
 
 .showreel-image {
-    background-image: url('/images/sawaan-rain.png');
+    background-image: url('/images/showreel.jpeg');
 }
 
 .showreel-overlay {
@@ -328,7 +329,7 @@ button {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(0deg, rgba(15, 14, 12, .82), transparent 70%);
+    background: radial-gradient(circle, transparent 10%, rgba(15, 14, 12, 0.95) 90%);
 }
 
 .showreel h2 {
@@ -338,10 +339,8 @@ button {
 }
 
 .showreel button {
-    font-size: 10px;
+    font-size: 15px;
     letter-spacing: .1em;
-    border-bottom: 1px solid #d6cbbb;
-    padding: 0 0 9px;
 }
 
 .showreel button span {

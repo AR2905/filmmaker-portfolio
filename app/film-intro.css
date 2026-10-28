@@ -191,7 +191,7 @@
 .fi-shot {
   position: absolute;
   inset: 0;
-  background: url('/bg.png') center / cover no-repeat;
+  background: url('/bg.jpg') center / cover no-repeat;
   animation: fiDolly 12.4s cubic-bezier(0.32, 0.5, 0.32, 1) 6.25s both;
 }
 
