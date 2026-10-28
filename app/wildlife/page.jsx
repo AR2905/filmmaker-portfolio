@@ -62,7 +62,7 @@ export default function WildlifePage() {
                     <h1 className="max-w-6xl text-[clamp(64px,12vw,180px)] font-medium leading-[0.78] tracking-[-0.075em]">
                         Wild
                         <br />
-                        <span className="font-normal italic">instinct.</span>
+                        <span className="font-normal italic">instinct</span>
                     </h1>
 
                     <div className="mt-12 flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
