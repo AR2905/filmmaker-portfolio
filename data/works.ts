@@ -19,8 +19,9 @@ export type WorkCredit = {
 export type WorkStill = {
     src: string;
     alt: string;
-    /** Layout hint for the stills grid. */
-    ratio: "wide" | "tall" | "square";
+    /** Intrinsic dimensions — keeps the still frame uncropped. */
+    width: number;
+    height: number;
 };
 
 export type Work = {
@@ -62,17 +63,20 @@ const REEL_STILLS: WorkStill[] = [
     {
         src: "/images/sawaan-rain.png",
         alt: "Rain falling through a dark frame",
-        ratio: "wide",
+        width: 1376,
+        height: 768,
     },
     {
         src: "/images/hero-film.png",
         alt: "A still held on screen, mid shot",
-        ratio: "tall",
+        width: 1376,
+        height: 768,
     },
     {
         src: "/images/flamingos.png",
         alt: "A quiet horizon at the end of the day",
-        ratio: "square",
+        width: 1376,
+        height: 768,
     },
 ];
 
@@ -121,17 +125,20 @@ export const works: Work[] = [
             {
                 src: "/images/works/sawan/2.jpg",
                 alt: "Rain falling through a dark frame",
-                ratio: "wide",
+                width: 1600,
+                height: 899,
             },
             {
                 src: "/images/works/sawan/1.jpg",
                 alt: "A still held on screen, mid shot",
-                ratio: "tall",
+                width: 1600,
+                height: 899,
             },
             {
                 src: "/images/works/sawan/3.jpg",
                 alt: "A quiet horizon at the end of the day",
-                ratio: "square",
+                width: 1600,
+                height: 787,
             },
         ]
     },
@@ -180,22 +187,26 @@ export const works: Work[] = [
             {
                 src: "/images/works/chhavi/4.jpg",
                 alt: "A figure held against a plain wall",
-                ratio: "tall",
+                width: 1600,
+                height: 907,
             },
             {
                 src: "/images/works/chhavi/1.jpg",
                 alt: "Light falling across a wet surface",
-                ratio: "wide",
+                width: 1600,
+                height: 900,
             },
             {
                 src: "/images/works/chhavi/3.jpg",
                 alt: "A still horizon at dusk",
-                ratio: "square",
+                width: 1600,
+                height: 903,
             },
             {
                 src: "/images/works/chhavi/2.jpg",
                 alt: "A still horizon at dusk",
-                ratio: "square",
+                width: 1600,
+                height: 926,
             },
         ],
     },
@@ -243,32 +254,38 @@ export const works: Work[] = [
             {
                 src: "/images/works/kho/2.jpg",
                 alt: "An empty hallway, frame held wide",
-                ratio: "wide",
+                width: 1600,
+                height: 899,
             },
             {
                 src: "/images/works/kho/1.jpg",
                 alt: "Rain against a dark window",
-                ratio: "tall",
+                width: 1600,
+                height: 896,
             },
             {
                 src: "/images/works/kho/4.jpg",
                 alt: "A distance shot at the end of the day",
-                ratio: "square",
+                width: 1600,
+                height: 899,
             },
             {
                 src: "/images/works/kho/3.jpg",
                 alt: "An empty hallway, frame held wide",
-                ratio: "wide",
+                width: 1600,
+                height: 899,
             },
             {
                 src: "/images/works/kho/5.jpg",
                 alt: "Rain against a dark window",
-                ratio: "tall",
+                width: 1600,
+                height: 899,
             },
             {
                 src: "/images/works/kho/6.jpg",
                 alt: "A distance shot at the end of the day",
-                ratio: "square",
+                width: 1600,
+                height: 899,
             },
         ],
     },
@@ -312,22 +329,26 @@ export const works: Work[] = [
             {
                 src: "/images/works/shaam/4.jpg",
                 alt: "An empty road at the end of the day",
-                ratio: "wide",
+                width: 1179,
+                height: 729,
             },
             {
                 src: "/images/works/shaam/1.jpg",
                 alt: "Rain against a dark window",
-                ratio: "wide",
+                width: 1316,
+                height: 728,
             },
             {
                 src: "/images/works/shaam/3.jpg",
                 alt: "Rain against a dark window",
-                ratio: "wide",
+                width: 402,
+                height: 226,
             },
             {
                 src: "/images/works/shaam/2.jpg",
                 alt: "Rain against a dark window",
-                ratio: "wide",
+                width: 1302,
+                height: 727,
             },
             // {
             //     src: "/images/works/kho/6.jpg",

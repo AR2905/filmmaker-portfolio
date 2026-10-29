@@ -162,7 +162,7 @@ export default async function WorkDetailPage({
                     <div className="mb-8 flex items-center gap-4 text-[10px] tracking-[0.2em] text-white/45">
                         <span style={{ color: ACCENT }}>{work.number}</span>
                         <span className="h-px w-8 bg-white/20" />
-                        <span>04 SHORT FILMS</span>
+                        <span>SHORT FILM</span>
                     </div>
 
                     <h1 className="font-['Playfair_Display',serif] text-[clamp(56px,13vw,190px)] font-normal leading-[0.78] tracking-[-0.075em] text-white">
@@ -171,7 +171,7 @@ export default async function WorkDetailPage({
                                 key={line}
                                 className={
                                     lines.length > 1 &&
-                                    index === lines.length - 1
+                                        index === lines.length - 1
                                         ? "block italic"
                                         : "block"
                                 }
@@ -389,15 +389,14 @@ export default async function WorkDetailPage({
                 <div className="space-y-5">
                     <Reveal>
                         <figure className="group relative overflow-hidden bg-black">
-                            <div className="relative aspect-[16/9] w-full sm:aspect-[21/9]">
-                                <Image
-                                    src={work.stills[0].src}
-                                    alt={work.stills[0].alt}
-                                    fill
-                                    sizes="100vw"
-                                    className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                                />
-                            </div>
+                            <Image
+                                src={work.stills[0].src}
+                                alt={work.stills[0].alt}
+                                width={work.stills[0].width}
+                                height={work.stills[0].height}
+                                sizes="100vw"
+                                className="h-auto w-full transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                            />
 
                             <figcaption className="flex justify-between pt-3 text-[9px] tracking-[0.16em] text-white/35">
                                 <span>FIG. 01</span>
@@ -406,25 +405,18 @@ export default async function WorkDetailPage({
                         </figure>
                     </Reveal>
 
-                    <div className="grid gap-5 pt-5 sm:grid-cols-2">
+                    <div className="grid items-start gap-5 pt-5 sm:grid-cols-2">
                         {work.stills.slice(1).map((still, index) => (
                             <Reveal key={still.src} delay={index * 110}>
                                 <figure className="group relative overflow-hidden bg-black">
-                                    <div
-                                        className={`relative w-full ${
-                                            still.ratio === "tall"
-                                                ? "aspect-[4/5]"
-                                                : "aspect-square"
-                                        }`}
-                                    >
-                                        <Image
-                                            src={still.src}
-                                            alt={still.alt}
-                                            fill
-                                            sizes="(max-width: 640px) 100vw, 50vw"
-                                            className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                                        />
-                                    </div>
+                                    <Image
+                                        src={still.src}
+                                        alt={still.alt}
+                                        width={still.width}
+                                        height={still.height}
+                                        sizes="(max-width: 640px) 100vw, 50vw"
+                                        className="h-auto w-full transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                                    />
 
                                     <figcaption className="flex justify-between gap-4 pt-3 text-[9px] tracking-[0.16em] text-white/35">
                                         <span>
