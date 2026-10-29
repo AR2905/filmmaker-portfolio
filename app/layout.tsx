@@ -2,10 +2,41 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
+const siteUrl = 'https://shravani-pujar.vercel.app'
+const siteTitle = 'Shravani Pujar — Digital Filmmaker'
+const siteDescription =
+  'The cinematic portfolio of Shravani Pujar, a digital filmmaker, storyteller and visual artist.'
+
 export const metadata: Metadata = {
-  title: 'Shravani Pujar — Digital Filmmaker',
-  description: 'The cinematic portfolio of Shravani Pujar, a digital filmmaker, storyteller and visual artist.',
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
   generator: 'v0.app',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    siteName: 'Shravani Pujar',
+    title: siteTitle,
+    description: siteDescription,
+    locale: 'en_US',
+    images: [
+      {
+        url: '/og.png',
+        width: 1917,
+        height: 830,
+        alt: 'Shravani Pujar — Digital Filmmaker',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/og.png'],
+  },
   icons: {
     icon: [
       {

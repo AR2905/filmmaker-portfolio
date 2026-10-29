@@ -13,13 +13,22 @@ const STRIP_ONE: string[] = [
     "/profile/2.jpeg",
     "/profile/3.jpeg",
     "/profile/4.jpeg",
-];
-
-const STRIP_TWO: string[] = [
     "/profile/5.jpeg",
     "/profile/6.jpeg",
     "/profile/7.jpeg",
     "/profile/8.jpeg",
+];
+
+const STRIP_TWO: string[] = [
+
+    "/profile/9.jpeg",
+    "/profile/10.jpeg",
+    "/profile/11.jpeg",
+    "/profile/12.jpeg",
+    "/profile/13.jpeg",
+    "/profile/14.jpeg",
+    "/profile/15.jpeg",
+    "/profile/16.jpeg",
 ];
 
 interface Skill {
@@ -80,33 +89,48 @@ interface FilmStripProps {
     photos: string[];
     label: string;
     className?: string;
+    direction?: "up" | "down";
 }
 
-const FilmStrip: FC<FilmStripProps> = ({ photos, label, className = "" }) => {
+const FilmStrip: FC<FilmStripProps> = ({
+    photos,
+    label,
+    className = "",
+    direction = "up",
+}) => {
     const holes =
         "w-[22px] shrink-0 bg-repeat-y " +
         "[background-image:linear-gradient(#e9dcc6_0_14px,transparent_14px)] " +
         "[background-size:10px_26px] [background-position:center_6px]";
 
+    const loop = [...photos, ...photos];
+
     return (
         <div
-            className={`relative flex w-[170px] shrink-0 bg-[#0b0a09] shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:w-[210px] ${className}`}
+            className={`relative flex w-[138px] shrink-0 bg-[#0b0a09] shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:w-[168px] ${className}`}
         >
             <div className={holes} aria-hidden />
 
-            <div className="flex flex-1 flex-col gap-2 py-2">
-                {photos.map((src, i) => (
-                    <div
-                        key={`${src}-${i}`}
-                        className="aspect-[4/5] w-full overflow-hidden bg-[#1a1612]"
-                    >
-                        <img
-                            src={src}
-                            alt=""
-                            className="h-full w-full object-cover [filter:sepia(0.9)_contrast(0.95)_brightness(0.85)]"
-                        />
-                    </div>
-                ))}
+            <div className="film-mask relative h-[518px] flex-1 overflow-hidden py-2 sm:h-[668px]">
+                <div
+                    className={`film-track flex flex-col ${
+                        direction === "down" ? "film-track-down" : ""
+                    }`}
+                >
+                    {loop.map((src, i) => (
+                        <div
+                            key={`${src}-${i}`}
+                            className="mb-2 aspect-[4/5] w-full shrink-0 overflow-hidden bg-[#1a1612]"
+                        >
+                            <img
+                                src={src}
+                                alt=""
+                                draggable={false}
+                                className="h-full w-full select-none object-cover [filter:sepia(0.9)_contrast(0.95)_brightness(0.85)]"
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className={holes} aria-hidden />
@@ -136,6 +160,32 @@ const AboutMyself: FC = () => {
         .font-script { font-family: 'Mrs Saint Delafield', cursive; }
         .font-body   { font-family: 'Josefin Sans', sans-serif; }
         .font-hello  { font-family: 'Poppins', sans-serif; }
+
+        @keyframes film-scroll-up {
+          from { transform: translate3d(0, 0, 0); }
+          to   { transform: translate3d(0, -50%, 0); }
+        }
+        @keyframes film-scroll-down {
+          from { transform: translate3d(0, -50%, 0); }
+          to   { transform: translate3d(0, 0, 0); }
+        }
+        .film-track {
+          animation: film-scroll-up 24s linear infinite;
+          will-change: transform;
+        }
+        .film-track-down {
+          animation-name: film-scroll-down;
+        }
+        .film-mask {
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+        }
+        .film-mask:hover .film-track {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .film-track { animation: none; }
+        }
       `}</style>
 
             {/* soft warm glow */}
@@ -195,6 +245,7 @@ const AboutMyself: FC = () => {
                         <FilmStrip
                             photos={STRIP_ONE}
                             label="P5 PLUS"
+                            direction="down"
                             className="origin-top -rotate-[4deg] lg:mt-4"
                         />
                         <FilmStrip
