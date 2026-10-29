@@ -352,8 +352,8 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
             </svg>
             <p className="fi-gate-kicker">SOUND CHECK</p>
             <h2 className="fi-gate-title">
-              BEST EXPERIENCED<br />
-              <i>WITH HEADPHONES</i>
+              USE HEADPHONES<br />
+              <i className='text-xl'>FOR BETTER EXPERIENCE</i>
             </h2>
             <p className="fi-gate-note">
               This intro plays with sound.
