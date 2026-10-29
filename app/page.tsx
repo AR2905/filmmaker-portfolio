@@ -3,8 +3,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import FilmIntro from '@/components/film-intro'
-import PhotoCollection from '@/components/photo-collection'
-import { photographyPhotographs, wildlifePhotographs } from '@/data/galleries'
 import { works } from '@/data/works'
 import AboutMyself from './About'
 
@@ -219,12 +217,12 @@ export default function Page() {
       <header className="site-nav">
         <Link href="#top" className="wordmark">SHRAVANI PUJAR</Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <Link href="#work">WORK</Link><Link href="#about">ABOUT</Link><Link href="#photography">PHOTOGRAPHY</Link><Link href="#wildlife">WILDLIFE</Link><Link href="#contact">CONTACT</Link>
+          <Link href="#work">WORK</Link><Link href="#about">ABOUT</Link><Link href="#photography">PHOTOGRAPHY</Link><Link href="#contact">CONTACT</Link>
         </nav>
         <button className="menu-button" onClick={() => setMenu(true)} aria-label="Open menu">MENU <span>↗</span></button>
       </header>
 
-      {menu && <div className="menu-overlay"><button className="close-button" onClick={() => setMenu(false)} aria-label="Close menu">CLOSE <span>×</span></button><div className="menu-links">{['WORK', 'ABOUT', 'PHOTOGRAPHY', 'WILDLIFE', 'EDITING', 'CONTACT'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenu(false)}>{item}<em>↗</em></a>)}</div><p>Digital filmmaker / visual artist<br />Ahmedabad, India</p></div>}
+      {menu && <div className="menu-overlay"><button className="close-button" onClick={() => setMenu(false)} aria-label="Close menu">CLOSE <span>×</span></button><div className="menu-links">{['WORK', 'ABOUT', 'PHOTOGRAPHY', 'EDITING', 'CONTACT'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenu(false)}>{item}<em>↗</em></a>)}</div><p>Digital filmmaker / visual artist<br />Ahmedabad, India</p></div>}
 
       <section id="top" className={`hero${intro ? '' : ' is-revealed'}`}>
         <div className="hero-image" />
@@ -476,7 +474,7 @@ export default function Page() {
       <section id="photography" className="photography section-pad">
         {/* Header */}
         <div className="works-head">
-          <p className="section-kicker font-[900] !text-[0.8rem]">PHOTOGRAPHY &amp; WILDLIFE</p>
+          <p className="section-kicker font-[900] !text-[0.8rem]">PHOTOGRAPHY</p>
 
           <p className="muted font-[900] !text-[0.8rem]">
             Soft light. Gentle shadows.
@@ -485,29 +483,403 @@ export default function Page() {
           </p>
         </div>
 
-        {/* Photography & Wildlife Galleries */}
-        <div className="mt-14 space-y-24 lg:mt-[70px] lg:space-y-32">
-          <PhotoCollection
-            id="photography-gallery"
-            index="01"
-            label="PHOTOGRAPHY"
-            title="Moments"
-            italic="observed"
-            description="A collection of portraits, details, textures and quiet visual stories — captured through light, atmosphere and observation."
-            photographs={photographyPhotographs}
-          />
 
-          <PhotoCollection
-            id="wildlife"
-            index="02"
-            label="WILDLIFE"
-            title="Wild"
-            italic="instinct"
-            description="Quiet encounters, fleeting movement and moments found beyond the frame — a study of nature in its rawest, most honest form."
-            photographs={wildlifePhotographs}
-          />
+        {/* Photography Grid */}
+        <div className="mt-14 grid grid-cols-1 gap-4 lg:mt-[70px] lg:grid-cols-12 lg:gap-5">
+
+          {/* Photography */}
+          <Link
+            href="/photography"
+            className="group relative block overflow-hidden lg:col-span-7"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden bg-black lg:aspect-[16/10]">
+
+              <img
+                src="/images/photography/cover.jpg"
+                alt="Photography"
+                className="
+            absolute inset-0 h-full w-full object-cover
+            scale-100
+            transition-all duration-1000
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:scale-[1.07]
+            group-hover:saturate-[0.8]
+          "
+              />
+
+              {/* Overlay */}
+              <div
+                className="
+            absolute inset-0
+            bg-gradient-to-t
+            from-black/85
+            via-black/25
+            to-black/5
+            opacity-0
+            transition-opacity duration-700
+            group-hover:opacity-100
+            max-sm:opacity-70
+          "
+              />
+
+              {/* Number */}
+              <span
+                className="
+            absolute left-5 top-5
+            text-[10px] tracking-[0.12em]
+            text-white/80
+            opacity-0
+            -translate-y-2
+            transition-all duration-500
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                01
+              </span>
+
+              {/* Arrow */}
+              <span
+                className="
+            absolute right-5 top-5
+            flex h-10 w-10 items-center justify-center
+            rounded-full
+            border border-white/50
+            text-lg text-white
+            opacity-0
+            translate-x-[-8px]
+            translate-y-[8px]
+            rotate-[-20deg]
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-x-0
+            group-hover:translate-y-0
+            group-hover:rotate-0
+            group-hover:opacity-100
+            group-hover:bg-white/10
+            max-sm:h-9
+            max-sm:w-9
+            max-sm:translate-x-0
+            max-sm:translate-y-0
+            max-sm:rotate-0
+            max-sm:opacity-100
+          "
+              >
+                ↗
+              </span>
+
+              {/* Content */}
+              <div
+                className="
+            absolute bottom-6 left-6 right-6
+            translate-y-8
+            opacity-0
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-white/65">
+                  PORTRAIT · FASHION · PRODUCT
+                </p>
+
+                <h3
+                  className="
+              text-[34px]
+              font-medium
+              leading-[0.9]
+              tracking-[-0.05em]
+              text-white
+              sm:text-[40px]
+              lg:text-[clamp(35px,4vw,62px)]
+            "
+                >
+                  Photography
+                </h3>
+
+                <span
+                  className="
+              mt-5 inline-block
+              border-b border-white/60
+              pb-1
+              text-[9px]
+              tracking-[0.18em]
+              text-white
+            "
+                >
+                  EXPLORE COLLECTION
+                </span>
+              </div>
+            </div>
+          </Link>
+
+
+          {/* Wildlife */}
+          <Link
+            href="/wildlife"
+            className="group relative block overflow-hidden lg:col-span-5"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden bg-black lg:aspect-[16/10]">
+
+              <img
+                src="/images/wildlife/cover.jpg"
+                alt="Wildlife Photography"
+                className="
+            absolute inset-0 h-full w-full object-cover
+            scale-100
+            transition-all duration-1000
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:scale-[1.07]
+            group-hover:saturate-[0.8]
+          "
+              />
+
+              <div
+                className="
+            absolute inset-0
+            bg-gradient-to-t
+            from-black/85
+            via-black/25
+            to-black/5
+            opacity-0
+            transition-opacity duration-700
+            group-hover:opacity-100
+            max-sm:opacity-70
+          "
+              />
+
+              <span
+                className="
+            absolute left-5 top-5
+            text-[10px] tracking-[0.12em]
+            text-white/80
+            opacity-0
+            -translate-y-2
+            transition-all duration-500
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                02
+              </span>
+
+              <span
+                className="
+            absolute right-5 top-5
+            flex h-10 w-10 items-center justify-center
+            rounded-full
+            border border-white/50
+            text-lg text-white
+            opacity-0
+            translate-x-[-8px]
+            translate-y-[8px]
+            rotate-[-20deg]
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-x-0
+            group-hover:translate-y-0
+            group-hover:rotate-0
+            group-hover:opacity-100
+            group-hover:bg-white/10
+            max-sm:h-9
+            max-sm:w-9
+            max-sm:translate-x-0
+            max-sm:translate-y-0
+            max-sm:rotate-0
+            max-sm:opacity-100
+          "
+              >
+                ↗
+              </span>
+
+              <div
+                className="
+            absolute bottom-6 left-6 right-6
+            translate-y-8
+            opacity-0
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-white/65">
+                  WILDLIFE · NATURE
+                </p>
+
+                <h3
+                  className="
+              text-[32px]
+              font-medium
+              leading-[0.88]
+              tracking-[-0.05em]
+              text-white
+              sm:text-[38px]
+              lg:text-[clamp(30px,3vw,50px)]
+            "
+                >
+                  Wildlife
+                  <br />
+                  Photography
+                </h3>
+
+                <span
+                  className="
+              mt-5 inline-block
+              border-b border-white/60
+              pb-1
+              text-[9px]
+              tracking-[0.18em]
+              text-white
+            "
+                >
+                  EXPLORE COLLECTION
+                </span>
+              </div>
+            </div>
+          </Link>
+
+
+          {/* Editing */}
+          {/* <Link
+            href="/editing"
+            className="group relative block overflow-hidden lg:col-span-7"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden bg-black lg:aspect-[16/10]">
+
+              <img
+                src="/images/editing/cover.jpg"
+                alt="Editing"
+                className="
+            absolute inset-0 h-full w-full object-cover
+            scale-100
+            transition-all duration-1000
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:scale-[1.07]
+            group-hover:saturate-[0.8]
+          "
+              />
+
+              <div
+                className="
+            absolute inset-0
+            bg-gradient-to-t
+            from-black/85
+            via-black/25
+            to-black/5
+            opacity-0
+            transition-opacity duration-700
+            group-hover:opacity-100
+            max-sm:opacity-70
+          "
+              />
+
+              <span
+                className="
+            absolute left-5 top-5
+            text-[10px] tracking-[0.12em]
+            text-white/80
+            opacity-0
+            -translate-y-2
+            transition-all duration-500
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                03
+              </span>
+
+              <span
+                className="
+            absolute right-5 top-5
+            flex h-10 w-10 items-center justify-center
+            rounded-full
+            border border-white/50
+            text-lg text-white
+            opacity-0
+            translate-x-[-8px]
+            translate-y-[8px]
+            rotate-[-20deg]
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-x-0
+            group-hover:translate-y-0
+            group-hover:rotate-0
+            group-hover:opacity-100
+            group-hover:bg-white/10
+            max-sm:h-9
+            max-sm:w-9
+            max-sm:translate-x-0
+            max-sm:translate-y-0
+            max-sm:rotate-0
+            max-sm:opacity-100
+          "
+              >
+                ↗
+              </span>
+
+              <div
+                className="
+            absolute bottom-6 left-6 right-6
+            translate-y-8
+            opacity-0
+            transition-all duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:translate-y-0
+            group-hover:opacity-100
+            max-sm:translate-y-0
+            max-sm:opacity-100
+          "
+              >
+                <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-white/65">
+                  COLOR · RETOUCHING · EXPERIMENTS
+                </p>
+
+                <h3
+                  className="
+              text-[34px]
+              font-medium
+              leading-[0.9]
+              tracking-[-0.05em]
+              text-white
+              sm:text-[40px]
+              lg:text-[clamp(35px,4vw,62px)]
+            "
+                >
+                  Editing
+                </h3>
+
+                <span
+                  className="
+              mt-5 inline-block
+              border-b border-white/60
+              pb-1
+              text-[9px]
+              tracking-[0.18em]
+              text-white
+            "
+                >
+                  EXPLORE COLLECTION
+                </span>
+              </div>
+            </div>
+          </Link> */}
+
         </div>
-
+        <p className="mt-6 text-[10px] tracking-[0.12em] text-black/60">
+          CLICK TO VIEW GALLERY ↗
+        </p>
       </section>
       {/* <section id="editing" className="editing"><p className="section-kicker">05 — EDITING</p><h2>THE CUT<br /><i>IS THE STORY.</i></h2><p>Shaping rhythm, silence and movement through the edit.</p></section> */}
 
