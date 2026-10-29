@@ -213,10 +213,10 @@ export default function FilmIntro({ onDone }: { onDone: () => void }) {
         <span className="fi-timecode" ref={codeRef}>00:00:00:00</span>
       </div>
 
-      <div className="fi-hud">
-        <span className="fi-slate">SHRAVANI PUJAR · 2026 · AHMEDABAD</span>
-        <button type="button" className="fi-skip" onClick={finish}>SKIP INTRO <b>↗</b></button>
-      </div>
+      {/* <div className="fi-hud"> */}
+      {/* <span className="fi-slate">SHRAVANI PUJAR · 2026 · AHMEDABAD</span> */}
+      {/* <button type="button" className="fi-skip" onClick={finish}>SKIP INTRO <b>↗</b></button> */}
+      {/* </div> */}
 
       <div className="fi-progress" aria-hidden="true"><i ref={barRef} /></div>
     </div>

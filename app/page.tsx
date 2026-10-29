@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import FilmIntro from '@/components/film-intro'
 import PhotoCollection from '@/components/photo-collection'
@@ -129,23 +129,91 @@ function ShowReel() {
   );
 }
 
+function ScrollProgress() {
+  const barRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0
+      if (barRef.current) barRef.current.style.transform = `scaleX(${progress})`
+    }
+    const request = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', request, { passive: true })
+    window.addEventListener('resize', request)
+    return () => {
+      window.removeEventListener('scroll', request)
+      window.removeEventListener('resize', request)
+      if (frame) cancelAnimationFrame(frame)
+    }
+  }, [])
+
+  return (
+    <div className="scroll-progress" aria-hidden="true">
+      <i ref={barRef} />
+    </div>
+  )
+}
+
 const skills = ['DIRECTION', 'CINEMATOGRAPHY', 'PHOTOGRAPHY', 'EDITING', 'SCRIPTWRITING', 'THEATRE']
 
-const ENABLE_FILM_INTRO = false
+const ENABLE_FILM_INTRO = true
+const INTRO_SESSION_KEY = 'sp-film-intro-seen'
+
+function currentDocumentId() {
+  const store = window as Window & { __spFilmIntroDoc?: string }
+  if (!store.__spFilmIntroDoc) {
+    store.__spFilmIntroDoc = `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  }
+  return store.__spFilmIntroDoc
+}
 
 export default function Page() {
   const [intro, setIntro] = useState(ENABLE_FILM_INTRO)
   const [menu, setMenu] = useState(false)
   const [activeSkill, setActiveSkill] = useState('DIRECTION')
-  const endIntro = useCallback(() => setIntro(false), [])
 
-  useEffect(() => {
-    if (!ENABLE_FILM_INTRO) setIntro(false)
-    if (ENABLE_FILM_INTRO && window.matchMedia('(prefers-reduced-motion: reduce)').matches) setIntro(false)
+  const endIntro = useCallback(() => {
+    setIntro(false)
+    try {
+      window.sessionStorage.setItem(INTRO_SESSION_KEY, currentDocumentId())
+    } catch {
+      /* sessionStorage can be unavailable (private mode); the intro still closes. */
+    }
+  }, [])
+
+  useLayoutEffect(() => {
+    if (!ENABLE_FILM_INTRO) {
+      setIntro(false)
+      return
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIntro(false)
+      return
+    }
+
+    try {
+      /* sessionStorage survives soft navigation (works -> home), while the
+         in-page document id is regenerated on reload/new tab. Comparing them
+         means the intro plays on the first visit and on every hard reload,
+         but never again on client-side navigation back to home. */
+      const seen = window.sessionStorage.getItem(INTRO_SESSION_KEY)
+      setIntro(seen !== currentDocumentId())
+    } catch {
+      setIntro(true)
+    }
   }, [])
 
   return (
     <main className="portfolio-shell">
+      <ScrollProgress />
       {intro && <FilmIntro onDone={endIntro} />}
 
       <header className="site-nav">
@@ -445,7 +513,8 @@ export default function Page() {
 
       {/* <section className="skills section-pad"><p className="section-kicker">06 — CREATIVE PRACTICE</p><div className="skills-list">{skills.map((skill, index) => <button key={skill} onMouseEnter={() => setActiveSkill(skill)} className={activeSkill === skill ? 'active' : ''}><span>0{index + 1}</span>{skill}<b>+</b></button>)}</div></section> */}
 
-      <footer id="contact" className="contact"><p className="section-kicker"> GET IN TOUCH</p><h2>LET&apos;S TELL<br /><i>A STORY.</i></h2><a className="contact-link" href="mailto:shravanip.0924@gmail.com">shravanip.0924@gmail.com <span>↗</span></a><a className="phone" href="tel:+917016188878">+91 7016188878</a><div className="footer-bottom"><span>© 2026 SHRAVANI PUJAR</span><span>MADE WITH CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+      <footer id="contact" className="contact"><p className="section-kicker"> GET IN TOUCH</p>
+        <h2>LET &apos; S TELL<br /><i>A STORY.</i></h2><a className="contact-link" href="mailto:shravanip.0924@gmail.com">shravanip.0924@gmail.com <span>↗</span></a><a className="phone" href="tel:+917016188878">+91 7016188878</a><div className="footer-bottom"><span>© 2026 SHRAVANI PUJAR</span><span>MADE WITH CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></div></footer>
     </main>
   )
 }

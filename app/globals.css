@@ -20,31 +20,33 @@
 
 html {
     scroll-behavior: smooth;
-    scrollbar-color: var(--scroll-thumb) var(--scroll-track);
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--scroll-track);
+.scroll-progress {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    height: 2px;
+    pointer-events: none;
+    background: rgba(232, 226, 215, .14);
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--scroll-thumb);
-    border: 2px solid var(--scroll-track);
-    border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--scroll-thumb-hover);
-}
-
-::-webkit-scrollbar-corner {
-    background: var(--scroll-track);
+.scroll-progress i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    background: linear-gradient(90deg, #8e6a58, var(--accent));
+    will-change: transform;
 }
 
 body {
