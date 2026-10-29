@@ -230,7 +230,7 @@ export default function Page() {
         <div className="hero-image" />
         <div className="hero-shade" />
         <div className="hero-copy">
-          <p className="eyebrow">MEET THE ARTIST</p>
+          <p className="eyebrow !text-[#e8dece] italic font-['Playfair_Display',serif] !font-normal !text-[18px] !tracking-[0.18em] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">MEET THE ARTIST</p>
 
           <h1 className="!font-black text-white text-6xl md:text-8xl leading-none transform scale-80 md:scale-100 origin-left">
 

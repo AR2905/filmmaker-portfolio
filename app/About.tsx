@@ -146,11 +146,11 @@ const AboutMyself: FC = () => {
                 <div className="grid min-h-[650px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
                     {/* LEFT */}
                     <div className="max-w-2xl">
-                        <h2 className="font-script text-[88px] leading-[0.8] text-[#f3e3c8] sm:text-[120px]">
+                        <h2 className="font-script text-[60px] leading-[0.8] text-[#f3e3c8] sm:text-[120px]">
                             About myself
                         </h2>
 
-                        <h3 className="font-hello mt-4 text-5xl font-bold text-[#b89a78]">
+                        <h3 className="font-hello mt-4 text-3xl md:text-5xl font-bold text-[#b89a78]">
                             Hello!
                         </h3>
 
