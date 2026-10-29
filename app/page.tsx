@@ -84,7 +84,7 @@ function ShowReel() {
             {/* Video */}
             <video
               ref={videoRef}
-              src="/showreel.mov"
+              src="/showreel.mp4"
               controls
               playsInline
               preload="metadata"
