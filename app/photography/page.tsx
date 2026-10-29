@@ -58,7 +58,7 @@ export default function PhotographyPage() {
                     <h1 className="max-w-6xl text-[clamp(64px,12vw,180px)] font-medium leading-[0.78] tracking-[-0.075em]">
                         Moments
                         <br />
-                        <span className="font-normal italic">observed.</span>
+                        <span className="font-normal">observed.</span>
                     </h1>
 
                     <div className="mt-12 flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
