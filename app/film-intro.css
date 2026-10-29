@@ -1,8 +1,8 @@
 /* =========================================================
    FILM INTRO — academy leader, cut to picture, title card
    Imported by components/film-intro.tsx
-   Timeline (seconds): leader 0.5 → numbers 0.9/2.15/3.4 →
-   cue 4.05 → iris 4.65 (track in) → flash 6.15 → cut 6.25 →
+   Timeline (seconds): leader 0.5 → numbers 0.9/1.9/2.9 →
+   last number holds → cue 4.05 → iris 4.65 (track in) → flash 6.15 → cut 6.25 →
    pres 7.9 → title 8.6 → rule 11.7 → sub 12.5 → credits 13.4/14.1 →
    card complete 16.3 → held ~2.4s → drift 17.4 → exit 18.65
    The picture card holds for the length of /intro.mp3; once the last credit
@@ -32,6 +32,101 @@
   z-index: 0;
   inset: 0;
   background: #08080a;
+}
+
+/* ---------- sound / headphone gate ---------- */
+.fi-gate {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 6vw;
+  text-align: center;
+  animation: fiFade 1s var(--ease) both;
+}
+
+.fi-gate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 44%, rgba(156, 102, 80, 0.16), transparent 58%);
+  pointer-events: none;
+}
+
+.fi-gate-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 540px;
+}
+
+.fi-gate-icon {
+  width: 34px;
+  height: 34px;
+  color: #c38770;
+  opacity: 0.85;
+}
+
+.fi-gate-kicker {
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: rgba(232, 226, 215, 0.55);
+}
+
+.fi-gate-title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4.4vw, 54px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: #f4efe4;
+}
+
+.fi-gate-title i {
+  font-style: italic;
+  color: #c38770;
+}
+
+.fi-gate-note {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.9;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 226, 215, 0.6);
+}
+
+.fi-gate-button {
+  margin-top: 6px;
+  padding: 14px 28px;
+  border: 1px solid rgba(232, 226, 215, 0.35);
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: #e8e2d7;
+  animation: fiSoundPulse 2.2s var(--ease) infinite;
+  transition: color 0.35s, background-color 0.35s, border-color 0.35s;
+}
+
+.fi-gate-button:hover,
+.fi-gate-button:focus-visible {
+  color: #08080a;
+  background: #e8e2d7;
+  border-color: #e8e2d7;
+  animation: none;
+  outline: none;
+}
+
+.fi-gate-button b {
+  margin-left: 10px;
+  font-weight: 400;
+  color: #c38770;
 }
 
 /* exit: content dissolves against solid black, then black hands over to the page
@@ -103,7 +198,7 @@
   inset: 0;
   border-radius: 50%;
   background: conic-gradient(from -4deg, rgba(232, 226, 215, 0.26) 0deg 86deg, rgba(232, 226, 215, 0) 86deg 360deg);
-  animation: fiSweep 1.25s linear 0.9s 3 both;
+  animation: fiSweep 1s linear 0.9s infinite;
 }
 
 .fi-count {
@@ -117,7 +212,13 @@
   font: 400 min(45vmin, 285px) / 1 'Playfair Display', serif;
   letter-spacing: -0.05em;
   text-shadow: 0 0 70px rgba(232, 226, 215, 0.3);
-  animation: fiNum 1.25s var(--ease) both;
+  animation: fiNum 1s var(--ease) both;
+}
+
+/* The final "1" holds through the reel beat before the picture cuts. */
+.fi-num-hold {
+  animation-name: fiNumHold;
+  animation-duration: 1.75s;
 }
 
 .fi-corner {
@@ -441,6 +542,46 @@
   margin-left: 8px;
 }
 
+.fi-audio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fi-sound {
+  position: absolute;
+  z-index: 14;
+  right: 6vw;
+  bottom: calc(var(--bars) + 24px);
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(232, 226, 215, 0.35);
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  color: rgba(232, 226, 215, 0.9);
+  animation: fiSoundPulse 1.8s var(--ease) infinite;
+  transition: color 0.35s, border-color 0.35s;
+}
+
+.fi-sound:hover,
+.fi-sound:focus-visible {
+  color: #c38770;
+  border-color: #c38770;
+}
+
+.fi-sound b {
+  font-weight: 400;
+  color: #c38770;
+  margin-left: 8px;
+}
+
+@keyframes fiSoundPulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.45; }
+}
+
 .fi-progress {
   position: absolute;
   z-index: 13;
@@ -594,6 +735,28 @@
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fiNumHold {
+  0% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+
+  16% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  86% {
+    opacity: 1;
+    transform: scale(1.004);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.97);
   }
 }
 
