@@ -189,24 +189,6 @@ export default async function WorkDetailPage({
                         {work.logline}
                     </p>
 
-                    {/* Meta strip */}
-                    <dl className="mt-14 grid max-w-3xl grid-cols-2 border-t border-white/12 sm:grid-cols-3">
-                        {meta.map((item) => (
-                            <div
-                                key={item.label}
-                                className="border-b border-white/12 py-5 pr-6 sm:border-b-0"
-                            >
-                                <dt className="mb-2 text-[9px] tracking-[0.2em] text-white/35">
-                                    {item.label}
-                                </dt>
-
-                                <dd className="text-[11px] tracking-[0.08em] text-white/85">
-                                    {item.value}
-                                </dd>
-                            </div>
-                        ))}
-                    </dl>
-
                     {/* Roles */}
                     <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
                         {work.roles.map((role) => (

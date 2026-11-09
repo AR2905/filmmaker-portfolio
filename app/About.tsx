@@ -1,8 +1,3 @@
-// AboutMyself.tsx  (React + TypeScript + Tailwind)
-// Dark "About myself" section: script heading, justified text, tilted film
-// strips, plus Software Skills / Education / Experience / Language.
-//
-// Skill icons live in /public/skills/*.svg (copy the `skills` folder there).
 
 import type { FC } from "react";
 
@@ -20,7 +15,6 @@ const STRIP_ONE: string[] = [
 ];
 
 const STRIP_TWO: string[] = [
-
     "/profile/9.jpeg",
     "/profile/10.jpeg",
     "/profile/11.jpeg",
@@ -31,9 +25,11 @@ const STRIP_TWO: string[] = [
     "/profile/16.jpeg",
 ];
 
+/* ----------------------------- SKILLS ---------------------------- */
+
 interface Skill {
     name: string;
-    icon: string; // path inside /public
+    icon: string;
 }
 
 const SKILLS: Skill[] = [
@@ -44,6 +40,8 @@ const SKILLS: Skill[] = [
     { name: "Photoshop", icon: "images/tech/photoshop.svg" },
 ];
 
+/* ---------------------------- EDUCATION -------------------------- */
+
 interface Education {
     years: string;
     school: string;
@@ -52,11 +50,18 @@ interface Education {
 
 const EDUCATION: Education[] = [
     {
-        years: "2019 — 2022",
-        school: "SMAN 2 Malang / Multimedia",
-        stream: "Natural Science",
+        years: "2022 — 2026",
+        school: "GLS Institute of Design, Ahmedabad",
+        stream: "B.Des in Digital Film Making",
+    },
+    {
+        years: "Secondary & Higher Secondary",
+        school: "Presidency School, Surat",
+        stream: "School Education",
     },
 ];
+
+/* ---------------------------- EXPERIENCE ------------------------- */
 
 interface Experience {
     role: string;
@@ -66,24 +71,73 @@ interface Experience {
 
 const EXPERIENCE: Experience[] = [
     {
-        role: "TikTok Content",
-        org: "Civil Campaign & Creative Content",
-        detail: "Content creation & content revision",
+        role: "Creative Development",
+        org: "Film & Web Series Projects",
+        detail:
+            "Story development, character development, screenplay analysis, creative brainstorming and content planning.",
+    },
+    {
+        role: "Pitch Deck Designer",
+        org: "Film & Web Series Concepts",
+        detail:
+            "Created visual pitch decks for film and web series concepts, including a presentation for Aditya Birla Group's production division.",
+    },
+    {
+        role: "Creative & Poster Designer",
+        org: "Film Festivals & Industry Events",
+        detail:
+            "Designed and adapted promotional posters for PIFF, Zee Chitra Gaurav Awards, BCIFF and IFFI.",
     },
 ];
 
+/* ----------------------------- PROJECTS -------------------------- */
+
+interface Project {
+    name: string;
+    role: string;
+}
+
+const PROJECTS: Project[] = [
+    {
+        name: "Shaam Jo Baaki Thi",
+        role: "Director | Writer | Editor",
+    },
+    {
+        name: "Kho Gaye Tum Kahan",
+        role: "Director | Writer | Editor",
+    },
+    {
+        name: "Sawan Ka Maah",
+        role: "Director | Writer | Editor",
+    },
+    {
+        name: "Chhavi",
+        role: "Cinematographer | Editor",
+    },
+    {
+        name: "Fashion Photography",
+        role: "Photographer",
+    },
+    {
+        name: "Film Projects",
+        role: "DOP | Sound Recordist",
+    },
+];
+
+/* ----------------------------- LANGUAGES ------------------------- */
+
 interface Language {
     name: string;
-    level: number; // 0–100
+    level: number;
 }
 
 const LANGUAGES: Language[] = [
-    { name: "Indonesia", level: 90 },
-    { name: "Java", level: 100 },
-    { name: "English", level: 70 },
+    { name: "Gujarati", level: 100 },
+    { name: "Hindi", level: 100 },
+    { name: "English", level: 80 },
 ];
 
-/* -------------------------- FILM STRIP -------------------------- */
+/* -------------------------- FILM STRIP --------------------------- */
 
 interface FilmStripProps {
     photos: string[];
@@ -113,9 +167,8 @@ const FilmStrip: FC<FilmStripProps> = ({
 
             <div className="film-mask relative h-[518px] flex-1 overflow-hidden py-2 sm:h-[668px]">
                 <div
-                    className={`film-track flex flex-col ${
-                        direction === "down" ? "film-track-down" : ""
-                    }`}
+                    className={`film-track flex flex-col ${direction === "down" ? "film-track-down" : ""
+                        }`}
                 >
                     {loop.map((src, i) => (
                         <div
@@ -142,7 +195,7 @@ const FilmStrip: FC<FilmStripProps> = ({
     );
 };
 
-/* ------------------------ SMALL HELPERS ------------------------- */
+/* ------------------------ SMALL HELPERS -------------------------- */
 
 const BlockTitle: FC<{ children: string }> = ({ children }) => (
     <h4 className="font-hello mb-5 text-xl font-bold text-[#b89a78]">
@@ -150,117 +203,170 @@ const BlockTitle: FC<{ children: string }> = ({ children }) => (
     </h4>
 );
 
-/* --------------------------- SECTION ---------------------------- */
+/* --------------------------- SECTION ----------------------------- */
 
 const AboutMyself: FC = () => {
     return (
         <section className="relative overflow-hidden bg-transparent text-[#e9dcc6]">
             <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Josefin+Sans:wght@400;600&family=Poppins:wght@700&display=swap');
-        .font-script { font-family: 'Mrs Saint Delafield', cursive; }
-        .font-body   { font-family: 'Josefin Sans', sans-serif; }
-        .font-hello  { font-family: 'Poppins', sans-serif; }
+                @import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Josefin+Sans:wght@400;600&family=Poppins:wght@700&display=swap');
 
-        @keyframes film-scroll-up {
-          from { transform: translate3d(0, 0, 0); }
-          to   { transform: translate3d(0, -50%, 0); }
-        }
-        @keyframes film-scroll-down {
-          from { transform: translate3d(0, -50%, 0); }
-          to   { transform: translate3d(0, 0, 0); }
-        }
-        .film-track {
-          animation: film-scroll-up 24s linear infinite;
-          will-change: transform;
-        }
-        .film-track-down {
-          animation-name: film-scroll-down;
-        }
-        .film-mask {
-          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
-          mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
-        }
-        .film-mask:hover .film-track {
-          animation-play-state: paused;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .film-track { animation: none; }
-        }
-      `}</style>
+                .font-script {
+                    font-family: 'Mrs Saint Delafield', cursive;
+                }
 
-            {/* soft warm glow */}
+                .font-body {
+                    font-family: 'Josefin Sans', sans-serif;
+                }
+
+                .font-hello {
+                    font-family: 'Poppins', sans-serif;
+                }
+
+                @keyframes film-scroll-up {
+                    from { transform: translate3d(0, 0, 0); }
+                    to { transform: translate3d(0, -50%, 0); }
+                }
+
+                @keyframes film-scroll-down {
+                    from { transform: translate3d(0, -50%, 0); }
+                    to { transform: translate3d(0, 0, 0); }
+                }
+
+                .film-track {
+                    animation: film-scroll-up 24s linear infinite;
+                    will-change: transform;
+                }
+
+                .film-track-down {
+                    animation-name: film-scroll-down;
+                }
+
+                .film-mask {
+                    -webkit-mask-image: linear-gradient(
+                        to bottom,
+                        transparent 0%,
+                        #000 7%,
+                        #000 93%,
+                        transparent 100%
+                    );
+                    mask-image: linear-gradient(
+                        to bottom,
+                        transparent 0%,
+                        #000 7%,
+                        #000 93%,
+                        transparent 100%
+                    );
+                }
+
+                .film-mask:hover .film-track {
+                    animation-play-state: paused;
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .film-track {
+                        animation: none;
+                    }
+                }
+            `}</style>
+
+            {/* Background glow */}
             <div className="pointer-events-none absolute -left-32 top-10 h-[420px] w-[420px] rounded-full bg-[#b8864b]/10 blur-[120px]" />
 
             <div className="relative mx-auto px-6 py-16 lg:px-12">
-                {/* ================= TOP: TEXT + FILM STRIPS ================= */}
+
+                {/* ================= TOP: ABOUT + FILM STRIPS ================= */}
+
                 <div className="grid min-h-[650px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
-                    {/* LEFT */}
+
+                    {/* LEFT CONTENT */}
+
                     <div className="max-w-2xl">
                         <h2 className="font-script text-[60px] leading-[0.8] text-[#f3e3c8] sm:text-[120px]">
                             About myself
                         </h2>
 
-                        <h3 className="font-hello mt-4 text-3xl md:text-5xl font-bold text-[#b89a78]">
+                        <h3 className="font-hello mt-4 text-3xl font-bold text-[#b89a78] md:text-5xl">
                             Hello!
                         </h3>
 
                         <div className="font-body mt-8 space-y-5 text-justify text-[15px] leading-[1.6] tracking-wide text-[#d9cbb8]">
+
                             <p>
-                                I&apos;m a Digital Filmmaking student who loves turning simple
-                                ideas into stories people can see, feel, and remember.
+                                I'm a Digital Filmmaking graduate who loves
+                                turning simple ideas into stories people can
+                                see, feel, and remember.
                             </p>
 
                             <p>
-                                My journey in filmmaking has taken me through direction,
-                                cinematography, photography, editing, scriptwriting, and
-                                theatre, giving me a chance to understand storytelling from
-                                different perspectives. I enjoy being behind the camera,
-                                shaping a scene, working with actors, finding the right visual,
-                                or simply figuring out how one small moment can say more than a
-                                hundred words.
+                                My journey in filmmaking has taken me through
+                                direction, cinematography, photography,
+                                editing, scriptwriting, and creative
+                                development, allowing me to understand
+                                storytelling from different perspectives.
+                                I enjoy being behind the camera, shaping
+                                scenes, working with creative teams, and
+                                finding the right visual language to bring
+                                stories to life.
                             </p>
 
                             <p>
-                                For me, filmmaking isn&apos;t just about creating something that
-                                looks good, it&apos;s about creating something that makes people
-                                pause, feel something, or see an idea differently.
+                                I have worked on film and web series concepts,
+                                pitch deck presentations, promotional
+                                creatives, and student films. These
+                                experiences have helped me develop an
+                                understanding of screenplay structure,
+                                character development, scene writing,
+                                dialogue, and visual storytelling.
                             </p>
 
                             <p>
-                                I&apos;m constantly learning, experimenting, and looking for
-                                opportunities to grow, especially in direction, editing &amp;
-                                scriptwriting. I bring curiosity, creativity, and a hands-on
-                                approach to every project I work on.
+                                For me, filmmaking isn't just about creating
+                                something that looks good. It's about creating
+                                something that makes people pause, feel
+                                something, or see an idea differently.
                             </p>
 
                             <p>
-                                I don&apos;t just want to make films. I want to create stories
-                                that stay with people &amp; connect with people.
+                                I'm constantly learning, experimenting, and
+                                looking for opportunities to grow, especially
+                                in direction, cinematography, editing, and
+                                storytelling. I bring curiosity, creativity,
+                                and a hands-on approach to every project.
                             </p>
+
                         </div>
                     </div>
 
-                    {/* RIGHT */}
+                    {/* RIGHT FILM STRIPS */}
+
                     <div className="relative flex justify-center gap-6 sm:gap-10 lg:justify-end">
+
                         <FilmStrip
                             photos={STRIP_ONE}
                             label="P5 PLUS"
                             direction="down"
                             className="origin-top -rotate-[4deg] lg:mt-4"
                         />
+
                         <FilmStrip
                             photos={STRIP_TWO}
                             label="P5 PLUS"
                             className="origin-top rotate-[4deg] lg:-mt-6"
                         />
+
                     </div>
                 </div>
 
                 {/* ================= BOTTOM: DETAILS ================= */}
-                <div className="font-body mt-12 grid grid-cols-1 gap-10 border-t border-[#e9dcc6]/15 pt-12 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] lg:gap-0">
-                    {/* Software skills */}
+
+                <div className="font-body mt-12 grid grid-cols-1 gap-10 border-t border-[#e9dcc6]/15 pt-12 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1.5fr_1fr_0.8fr] lg:gap-0">
+
+                    {/* SOFTWARE SKILLS */}
+
                     <div className="lg:pr-6">
                         <BlockTitle>Software Skills</BlockTitle>
+
                         <div className="flex flex-wrap gap-x-4 gap-y-5">
                             {SKILLS.map((s) => (
                                 <div
@@ -273,6 +379,7 @@ const AboutMyself: FC = () => {
                                         className="h-14 w-14 object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.5)]"
                                         loading="lazy"
                                     />
+
                                     <span className="text-center text-[11px] leading-tight text-[#d9cbb8]/70">
                                         {s.name}
                                     </span>
@@ -281,20 +388,25 @@ const AboutMyself: FC = () => {
                         </div>
                     </div>
 
-                    {/* Education */}
-                    <div className="lg:border-l lg:border-[#e9dcc6]/15 lg:px-6">
+                    {/* EDUCATION */}
+
+                    <div className="lg:border-l lg:border-[#e9dcc6]/15 lg:px-5">
                         <BlockTitle>Education</BlockTitle>
+
                         <ul className="space-y-5">
                             {EDUCATION.map((e) => (
                                 <li key={e.school} className="flex gap-3">
                                     <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#b89a78]" />
+
                                     <div>
                                         <p className="text-xs font-semibold tracking-wide text-[#b89a78]">
                                             {e.years}
                                         </p>
+
                                         <p className="mt-1 text-sm font-semibold leading-5 text-[#f3e3c8]">
                                             {e.school}
                                         </p>
+
                                         <p className="text-sm leading-5 text-[#d9cbb8]/70">
                                             {e.stream}
                                         </p>
@@ -304,21 +416,26 @@ const AboutMyself: FC = () => {
                         </ul>
                     </div>
 
-                    {/* Experience */}
-                    <div className="lg:border-l lg:border-[#e9dcc6]/15 lg:px-6">
+                    {/* EXPERIENCE */}
+
+                    <div className="lg:border-l lg:border-[#e9dcc6]/15 lg:px-5">
                         <BlockTitle>Experience</BlockTitle>
+
                         <ul className="space-y-5">
                             {EXPERIENCE.map((x) => (
                                 <li key={x.role} className="flex gap-3">
                                     <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#b89a78]" />
+
                                     <div>
                                         <p className="text-sm font-semibold leading-5 text-[#f3e3c8]">
                                             {x.role}
                                         </p>
+
                                         <p className="mt-1 text-sm leading-5 text-[#d9cbb8]/80">
                                             {x.org}
                                         </p>
-                                        <p className="text-sm leading-5 text-[#d9cbb8]/60">
+
+                                        <p className="mt-1 text-xs leading-5 text-[#d9cbb8]/60">
                                             {x.detail}
                                         </p>
                                     </div>
@@ -327,20 +444,44 @@ const AboutMyself: FC = () => {
                         </ul>
                     </div>
 
-                    {/* Language / communication */}
-                    <div className="lg:border-l lg:border-[#e9dcc6]/15 lg:pl-10">
-                        <BlockTitle>Language</BlockTitle>
-                        <ul className="space-y-4">
-                            {LANGUAGES.map((l) => (
-                                <li key={l.name}>
-                                    <div className="mb-1.5 flex justify-between text-sm">
-                                        <span className="text-[#f3e3c8]">{l.name}</span>
-                                    </div>
+                    {/* PROJECTS */}
 
+                    <div className="lg:border-l lg:border-[#e9dcc6]/15 lg:px-5">
+                        <BlockTitle>Projects</BlockTitle>
+
+                        <ul className="space-y-4">
+                            {PROJECTS.map((project) => (
+                                <li key={project.name}>
+                                    <p className="text-sm font-semibold leading-5 text-[#f3e3c8]">
+                                        {project.name}
+                                    </p>
+
+                                    <p className="mt-1 text-xs leading-5 text-[#d9cbb8]/70">
+                                        {project.role}
+                                    </p>
                                 </li>
                             ))}
                         </ul>
                     </div>
+
+                    {/* LANGUAGES */}
+
+                    <div className="lg:border-l lg:border-[#e9dcc6]/15 lg:pl-5">
+                        <BlockTitle>Languages</BlockTitle>
+
+                        <ul className="space-y-4">
+                            {LANGUAGES.map((l) => (
+                                <li key={l.name}>
+                                    <div className="mb-1.5 flex justify-between text-sm">
+                                        <span className="text-[#f3e3c8]">
+                                            {l.name}
+                                        </span>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </section>
