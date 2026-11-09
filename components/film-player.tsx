@@ -10,12 +10,38 @@ type FilmPlayerProps = {
     label: string;
     /** Shown on the poster before the file is fetched. */
     runtime: string;
-    sizeMb: number;
+    /** Local file size in MB. Omit for embedded sources like YouTube. */
+    sizeMb?: number;
 };
 
 type Status = "idle" | "loading" | "ready" | "error";
 
 const HEAVY_FILE_THRESHOLD_MB = 50;
+
+function getYouTubeId(url: string): string | null {
+    try {
+        const parsed = new URL(url);
+        const host = parsed.hostname.replace(/^www\./, "");
+
+        if (host === "youtu.be") {
+            return parsed.pathname.split("/").filter(Boolean)[0] ?? null;
+        }
+
+        if (host === "youtube.com" || host === "m.youtube.com" || host === "youtube-nocookie.com") {
+            if (parsed.pathname === "/watch") return parsed.searchParams.get("v");
+            if (parsed.pathname.startsWith("/embed/")) {
+                return parsed.pathname.split("/embed/")[1]?.split(/[?/]/)[0] ?? null;
+            }
+            if (parsed.pathname.startsWith("/shorts/")) {
+                return parsed.pathname.split("/shorts/")[1]?.split(/[?/]/)[0] ?? null;
+            }
+        }
+    } catch {
+        return null;
+    }
+
+    return null;
+}
 
 function formatDuration(seconds: number): string {
     if (!Number.isFinite(seconds) || seconds <= 0) return "";
@@ -30,10 +56,9 @@ function formatDuration(seconds: number): string {
 /**
  * Click-to-load film player.
  *
- * The mp4 is never referenced in the initial HTML. Nothing is fetched until
- * the visitor actually asks to watch, so a 212 MB master does not compete
- * with the page for bandwidth. The button doubles as the poster, which keeps
- * the "not started" state from being a black rectangle.
+ * Supports local video files and YouTube links (watch, embed, or youtu.be).
+ * Nothing is fetched until the visitor asks to watch, so heavy masters and
+ * third-party embeds do not compete with the page for bandwidth.
  */
 export default function FilmPlayer({
     src,
@@ -48,10 +73,14 @@ export default function FilmPlayer({
     const [status, setStatus] = useState<Status>("idle");
     const [duration, setDuration] = useState("");
 
-    const heavy = sizeMb >= HEAVY_FILE_THRESHOLD_MB;
+    const youTubeId = getYouTubeId(src);
+    const isYouTube = youTubeId !== null;
+    const heavy = typeof sizeMb === "number" && sizeMb >= HEAVY_FILE_THRESHOLD_MB;
+    const openHref = isYouTube ? `https://www.youtube.com/watch?v=${youTubeId}` : src;
+    const openLabel = isYouTube ? "WATCH ON YOUTUBE" : "OPEN FILE";
 
     useEffect(() => {
-        if (!active) return;
+        if (!active || isYouTube) return;
 
         const node = videoRef.current;
 
@@ -68,7 +97,7 @@ export default function FilmPlayer({
         const attempt = node.play();
 
         if (attempt) attempt.catch(() => undefined);
-    }, [active, src]);
+    }, [active, isYouTube, src]);
 
     const handleActivate = useCallback(() => {
         setStatus("loading");
@@ -95,7 +124,21 @@ export default function FilmPlayer({
                     }`}
                 />
 
-                {active && (
+                {active && isYouTube && (
+                    <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${youTubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                        title={label}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                        onLoad={() => setStatus("ready")}
+                        className={`absolute inset-0 h-full w-full border-0 bg-black transition-opacity duration-500 ${
+                            status === "ready" ? "opacity-100" : "opacity-0"
+                        }`}
+                    />
+                )}
+
+                {active && !isYouTube && (
                     <video
                         ref={videoRef}
                         controls
@@ -153,7 +196,7 @@ export default function FilmPlayer({
                         </span>
 
                         <span className="text-[10px] tracking-[0.22em] text-white/70">
-                            STREAMING · {sizeMb} MB
+                            {isYouTube ? "LOADING PLAYER" : `STREAMING · ${sizeMb} MB`}
                         </span>
                     </div>
                 )}
@@ -168,12 +211,12 @@ export default function FilmPlayer({
 
                         <span className="flex items-center gap-4">
                             <a
-                                href={src}
+                                href={openHref}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="border-b border-white/60 pb-1 text-[10px] tracking-[0.2em] text-white"
                             >
-                                OPEN VIDEO <em className="not-italic">↗</em>
+                                {openLabel} <em className="not-italic">↗</em>
                             </a>
 
                             <button
@@ -204,12 +247,12 @@ export default function FilmPlayer({
                     )}
 
                     <a
-                        href={src}
+                        href={openHref}
                         target="_blank"
                         rel="noreferrer"
                         className="transition-colors hover:text-white/80"
                     >
-                        OPEN FILE ↗
+                        {openLabel} ↗
                     </a>
                 </span>
             </figcaption>

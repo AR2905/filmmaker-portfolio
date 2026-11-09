@@ -159,11 +159,11 @@ export default async function WorkDetailPage({
 
                 <div className="relative z-10 w-full px-6 pb-16 sm:px-10 sm:pb-20 lg:px-16 lg:pb-24">
                     {/* Index marker */}
-                    <div className="mb-8 flex items-center gap-4 text-[10px] tracking-[0.2em] text-white/45">
+                    {/* <div className="mb-8 flex items-center gap-4 text-[10px] tracking-[0.2em] text-white/45">
                         <span style={{ color: ACCENT }}>{work.number}</span>
                         <span className="h-px w-8 bg-white/20" />
                         <span>SHORT FILM</span>
-                    </div>
+                    </div> */}
 
                     <h1 className="font-['Playfair_Display',serif] text-[clamp(56px,13vw,190px)] font-normal leading-[0.78] tracking-[-0.075em] text-white">
                         {lines.map((line, index) => (

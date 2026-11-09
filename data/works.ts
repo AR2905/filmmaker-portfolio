@@ -52,7 +52,8 @@ export type Work = {
      */
     video: {
         src: string;
-        sizeMb: number;
+        /** Local file size in MB. Omit for embedded sources like YouTube. */
+        sizeMb?: number;
         label: string;
     } | null;
 
@@ -116,9 +117,8 @@ export const works: Work[] = [
         ],
 
         video: {
-            src: "/sawan-ka-maah.mp4",
-            sizeMb: 99,
-            label: "FULL FILM · 1080P",
+            src: "https://www.youtube.com/embed/fL-KGyDgo8A?si=TFYeb8nSGK0OmNYx",
+            label: "FULL FILM · YOUTUBE",
         },
 
         stills: [
