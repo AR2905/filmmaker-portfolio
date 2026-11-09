@@ -886,7 +886,7 @@ export default function Page() {
       {/* <section className="skills section-pad"><p className="section-kicker">06 — CREATIVE PRACTICE</p><div className="skills-list">{skills.map((skill, index) => <button key={skill} onMouseEnter={() => setActiveSkill(skill)} className={activeSkill === skill ? 'active' : ''}><span>0{index + 1}</span>{skill}<b>+</b></button>)}</div></section> */}
 
       <footer id="contact" className="contact"><p className="section-kicker"> GET IN TOUCH</p>
-        <h2>LET &apos; S TELL<br /><i>A STORY.</i></h2><a className="contact-link" href="mailto:shravanip.0924@gmail.com">shravanip.0924@gmail.com <span>↗</span></a><a className="phone" href="tel:+917016188878">+91 7016188878</a><div className="footer-bottom"><span>© 2026 SHRAVANI PUJAR</span><span>MADE WITH CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+        <h2>LET &apos; S TELL<br /><i>A STORY.</i></h2><a className="contact-link" href="mailto:shravanip.0924@gmail.com">shravanip.0924@gmail.com <span>↗</span></a><a className="phone" href="tel:+917016188878">+91 7016188878</a><div className="footer-bottom"><span>© 2026 SHRAVANI PUJAR</span><a href="#top">BACK TO TOP ↑</a></div></footer>
     </main>
   )
 }
