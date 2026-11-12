@@ -135,6 +135,8 @@ const LANGUAGES: Language[] = [
     { name: "Gujarati", level: 100 },
     { name: "Hindi", level: 100 },
     { name: "English", level: 80 },
+    { name: "Kannada", level: 100 },
+    { name: "Marathi", level: 90 },
 ];
 
 /* -------------------------- FILM STRIP --------------------------- */
