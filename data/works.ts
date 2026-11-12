@@ -13,7 +13,10 @@
 
 export type WorkCredit = {
     label: string;
+    /** Comma separated for shared credits — rendered one per line when stacked. */
     value: string;
+    /** Group credits stack each collaborator on its own line. */
+    stacked?: boolean;
 };
 
 export type WorkStill = {
@@ -166,9 +169,11 @@ export const works: Work[] = [
             "In a world that never stands still, sometimes the most beautiful things are found in a moment of stillness",
 
         credits: [
-            { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
-            { label: "WRITTEN BY", value: "SHRAVANI PUJAR" },
-            { label: "EDITED BY", value: "SHRAVANI PUJAR" },
+            {
+                label: "DIRECTED, WRITTEN & EDITED BY",
+                value: "DIVYA BOOB, SIMRAN GAJJAR, URVI THANGOAKAR, TISA PATEL, SHRAVANI PUJAR",
+                stacked: true,
+            },
         ],
         video: {
             src: "https://www.youtube.com/embed/ephY-MPbJDE?si=l_lrtrnEVZ-a791J",
