@@ -171,9 +171,8 @@ export const works: Work[] = [
             { label: "EDITED BY", value: "SHRAVANI PUJAR" },
         ],
         video: {
-            src: "/chhavi.mp4",
-            sizeMb: 212,
-            label: "FULL FILM · 1080P",
+            src: "https://www.youtube.com/embed/ephY-MPbJDE?si=l_lrtrnEVZ-a791J",
+            label: "FULL FILM · YOUTUBE",
         },
 
         stills: [
