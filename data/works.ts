@@ -236,9 +236,8 @@ export const works: Work[] = [
         ],
 
         video: {
-            src: "https://google.com1nvLHKiWc3C905SBM_Q3jpBzvN7PdfOOD/preview",
-            sizeMb: 99,
-            label: "FULL FILM · 1080P",
+            src: "https://www.youtube.com/embed/bewwuYtAark?si=jx9mx9U3C2EPyikd",
+            label: "FULL FILM · YOUTUBE",
         },
 
         stills: [
