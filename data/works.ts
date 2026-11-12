@@ -102,9 +102,10 @@ export const works: Work[] = [
             "A monsoon month measured in unanswered calls, wet windows, and the distance between two people who will not say it out loud.",
 
         body: [
-            "SAWAAN KA MAAH is a film about waiting. It follows one month of rain in a small house on the edge of the city, and the woman who keeps leaving the window open in case someone walks back through it.",
-            "There is very little dialogue. The story is carried by repetition instead — the same chair, the same bus that does not arrive, the same song played one bar too many times. I wanted the monsoon to behave like a character: patient, indifferent, and impossible to argue with.",
-            "Almost everything was shot on overcast afternoons. I let the flat grey light do the work and kept the camera mostly still, so the only real movement in the film belongs to the rain and to her.",
+            "The film explores the quiet ache of loving someone from a distance.",
+            "Separated by borders, two people remain connected through the little things that remind them of each other — the sound of rain, a cup of tea, an empty chair, or a familiar breeze.",
+            "As the monsoon unfolds, nature becomes their silent messenger, carrying unspoken emotions, memories, and longing across the distance.",
+            "Through subtle moments and poetic imagery, the film captures a love that exists beyond physical presence, reminding us that sometimes, all it takes to feel close to someone is knowing that somewhere, Because sometimes, distance separates two people, but never the little things that keep bringing them back to each other",
         ],
 
         quote:
@@ -160,9 +161,10 @@ export const works: Work[] = [
             "One room, one afternoon, and a person waiting for a version of themselves that never quite arrives.",
 
         body: [
-            "CHHAVI — the Hindi word for a shadow, and for a reflection — was an exercise in removing everything that was not necessary. One room. One performer. Two fixed camera positions. No cuts for the first two minutes.",
-            "The subject does the same thing over and over, slightly differently each time, and the film is really about the gap between attempt and result. Every version of the gesture has a different shadow. That was the entire idea.",
-            "I shot it in one afternoon with a single lens, and I cut it in a way that lets the room breathe. The sounds are the room itself — a fan, a wall, a distant road.",
+            "Chhavi is an experimental exploration of the relationship between stillness and movement, capturing the fleeting moments that often go unnoticed, a glance, a shadow, a passing gesture.",
+            "Through abstract visuals, visual rhythms, and fragments of everyday life, the film reflects on the passage of time, the inevitability of change, and the way certain moments continue to live within our memories.",
+            "Rather than following a conventional narrative, Film Chhavi creates a visual experience that invites the viewer to observe, feel, and interpret.",
+            "At its heart, the film is a reflection on the fleeting nature of life and the beauty of moments that exist only briefly, yet leave a lasting impression.",
         ],
 
         quote:
@@ -225,9 +227,12 @@ export const works: Work[] = [
             "A woman returns to a house she grew up in and finds that memory has edited the rooms smaller than they were.",
 
         body: [
-            "KHO GAYE TUM KAHAN — 'where did you get lost' — is a film about the unreliability of recall. It is built from a single afternoon of someone walking through a childhood home, and everything we see is the past disagreeing with her about it.",
-            "The rooms change scale between cuts. Doors that were wide become narrow. A corridor that took ten seconds takes a minute. Nothing is dramatised; the unease comes entirely from architecture quietly lying.",
-            "I have written and storyboarded the full film and shot the opening sequence. It is currently in post-production — the picture lock is scheduled and the grade and sound pass are underway.",
+            "The film follows Nachiket and Barkha, a couple who share a simple, happy life built on love and companionship.",
+            "Their world gradually begins to change when Barkha starts struggling with dementia, causing her to lose pieces of their shared memories.",
+            "Through moments of tenderness, confusion, warmth, and pain, Nachiket remains by her side, patiently holding on to the life they have built together.",
+            "However, as the story unfolds, the line between memory, imagination, and reality begins to blur.",
+            "We are left to question whether Barkha is truly living with Nachiket or whether he is holding on to a life that ended years ago, after an accident took her away.",
+            "At its heart, the film explores love, loss, memory, and the fragile ways we hold on to the people we cannot bear to forget.",
         ],
 
         quote:
@@ -301,9 +306,10 @@ export const works: Work[] = [
             "Two people keep missing each other by minutes in the same empty city, and neither of them ever knows how close it was.",
 
         body: [
-            "SHAAM JO BAAKI THI — 'the evening that was left over' — is about near-misses. Two characters move through the same city at the same hour, always in the same frame, and never in the same shot.",
-            "The structure is a long one. They cross the same bus stop, the same stairwell, the same stretch of empty road, and every time the audience sees both of them in the same location the day is already ending.",
-            "It is being shot over two evenings of golden hour and blue hour, and it is the film where I am most deliberately using colour — every shared location is graded to the exact same temperature, so the two timelines feel like one long evening seen twice.",
+            "this film follows Nikhil and Vani, two individuals who, despite their different lives and quiet loneliness, find an unexpected sense of comfort in each other's presence.",
+            "Their connection unfolds gradually through everyday conversations, shared routines, familiar silences, and small gestures of warmth.",
+            "Set against the streets, monsoon evenings, and familiar corners of Ahmedabad, the city becomes more than just a backdrop, quietly reflecting the emotions and moments that shape their journey.",
+            "Through an understated and intimate narrative, the film explores the transient nature of human connections, the beauty of unexpected companionship, and how even a brief presence in someone's life can leave behind something that time cannot easily erase.",
         ],
 
         quote:
