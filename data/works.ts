@@ -109,11 +109,8 @@ export const works: Work[] = [
 
         credits: [
             { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
-            { label: "SHOT ON", value: "SONY A6400 · 35MM & 85MM" },
+            { label: "WRITTEN BY", value: "SHRAVANI PUJAR" },
             { label: "EDITED BY", value: "SHRAVANI PUJAR" },
-            { label: "SOUND", value: "PRACTICAL / FIELD RECORDING" },
-            { label: "GRADE", value: "LOGIC & DA VINCI RESOLVE" },
-            { label: "STATUS", value: "RELEASED" },
         ],
 
         video: {
@@ -169,14 +166,10 @@ export const works: Work[] = [
             "The shadow arrived first. The person followed a few seconds late.",
 
         credits: [
-            { label: "WRITTEN & DIRECTED BY", value: "SHRAVANI PUJAR" },
-            { label: "SHOT ON", value: "FUJIFILM X-T30 · 23MM FIXED" },
+            { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
+            { label: "WRITTEN BY", value: "SHRAVANI PUJAR" },
             { label: "EDITED BY", value: "SHRAVANI PUJAR" },
-            { label: "SOUND", value: "ON-LOCATION / NO SCORE" },
-            { label: "GRADE", value: "DESATURATED PRINT LOOK" },
-            { label: "STATUS", value: "RELEASED" },
         ],
-
         video: {
             src: "/chhavi.mp4",
             sizeMb: 212,
@@ -237,11 +230,9 @@ export const works: Work[] = [
             "The house remembered it bigger. She remembered it exactly.",
 
         credits: [
-            { label: "WRITTEN & DIRECTED BY", value: "SHRAVANI PUJAR" },
-            { label: "SHOT ON", value: "SONY A6400 · 24MM & 50MM" },
+            { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
+            { label: "WRITTEN BY", value: "SHRAVANI PUJAR" },
             { label: "EDITED BY", value: "SHRAVANI PUJAR" },
-            { label: "SOUND", value: "DESIGN IN POST" },
-            { label: "STATUS", value: "IN PRODUCTION" },
         ],
 
         video: {
@@ -314,15 +305,11 @@ export const works: Work[] = [
 
         quote:
             "They shared the whole city for a month and met for eleven seconds.",
-
         credits: [
-            { label: "WRITTEN & DIRECTED BY", value: "SHRAVANI PUJAR" },
-            { label: "SHOT ON", value: "SONY A6400 · 50MM & 85MM" },
+            { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
+            { label: "WRITTEN BY", value: "SHRAVANI PUJAR" },
             { label: "EDITED BY", value: "SHRAVANI PUJAR" },
-            { label: "GRADE", value: "GOLDEN / BLUE HOUR MATCHING" },
-            { label: "STATUS", value: "IN PRODUCTION" },
         ],
-
         video: null,
 
         stills: [

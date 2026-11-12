@@ -85,7 +85,7 @@ function InProduction({ poster, alt }: { poster: string; alt: string }) {
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-6 text-center">
                     <span className="flex items-center gap-3 text-[10px] tracking-[0.28em] text-white/55">
                         <span className="h-px w-6 bg-white/30" />
-                        IN PRODUCTION
+                        IN POST PRODUCTION
                         <span className="h-px w-6 bg-white/30" />
                     </span>
 
