@@ -5,6 +5,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const photographs = [
+    { src: "/images/wild/11.jpg", width: 1066, height: 1600 },
+    { src: "/images/wild/12.jpg", width: 1066, height: 1600 },
+    { src: "/images/wild/13.jpg", width: 1066, height: 1600 },
     { src: "/images/wild/10.png", width: 1066, height: 1600 },
     { src: "/images/wild/1.jpg", width: 1600, height: 1066 },
     { src: "/images/wild/2.jpg", width: 1600, height: 1066 },

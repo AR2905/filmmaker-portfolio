@@ -293,20 +293,46 @@ export default async function WorkDetailPage({
                             </p>
 
                             <dl>
-                                {work.credits.map((credit) => (
-                                    <div
-                                        key={credit.label}
-                                        className="flex items-baseline justify-between gap-6 border-b border-white/10 py-4"
-                                    >
-                                        <dt className="shrink-0 text-[9px] tracking-[0.18em] text-white/35">
-                                            {credit.label}
-                                        </dt>
+                                {work.credits.map((credit) =>
+                                    credit.stacked ? (
+                                        <div
+                                            key={credit.label}
+                                            className="border-b border-white/10 py-4"
+                                        >
+                                            <dt className="text-[9px] tracking-[0.18em] text-white/35">
+                                                {credit.label}
+                                            </dt>
 
-                                        <dd className="text-right text-[10px] leading-5 tracking-[0.08em] text-white/80">
-                                            {credit.value}
-                                        </dd>
-                                    </div>
-                                ))}
+                                            <dd className="mt-3 flex flex-col gap-1.5">
+                                                {credit.value
+                                                    .split(",")
+                                                    .map((name) => name.trim())
+                                                    .filter(Boolean)
+                                                    .map((name) => (
+                                                        <span
+                                                            key={name}
+                                                            className="text-[10px] leading-5 tracking-[0.08em] text-white/80"
+                                                        >
+                                                            {name}
+                                                        </span>
+                                                    ))}
+                                            </dd>
+                                        </div>
+                                    ) : (
+                                        <div
+                                            key={credit.label}
+                                            className="flex items-baseline justify-between gap-6 border-b border-white/10 py-4"
+                                        >
+                                            <dt className="shrink-0 text-[9px] tracking-[0.18em] text-white/35">
+                                                {credit.label}
+                                            </dt>
+
+                                            <dd className="text-right text-[10px] leading-5 tracking-[0.08em] text-white/80">
+                                                {credit.value}
+                                            </dd>
+                                        </div>
+                                    )
+                                )}
                             </dl>
                         </Reveal>
                     </div>
