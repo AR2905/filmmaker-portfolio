@@ -105,7 +105,7 @@ export const works: Work[] = [
         ],
 
         quote:
-            "The rain was never the weather. It was the only honest thing in the house.",
+            "Across borders and beneath the same sky, some hearts never stop finding their way to each other",
 
         credits: [
             { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
@@ -163,7 +163,7 @@ export const works: Work[] = [
         ],
 
         quote:
-            "The shadow arrived first. The person followed a few seconds late.",
+            "In a world that never stands still, sometimes the most beautiful things are found in a moment of stillness",
 
         credits: [
             { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
@@ -226,7 +226,7 @@ export const works: Work[] = [
         ],
 
         quote:
-            "The house remembered it bigger. She remembered it exactly.",
+            "When memories become fragments and reality becomes a blur, love is the one thing that refuses to disappear",
 
         credits: [
             { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
@@ -302,7 +302,9 @@ export const works: Work[] = [
         ],
 
         quote:
-            "They shared the whole city for a month and met for eleven seconds.",
+            "Across borders and beneath the same sky, some hearts never stop finding their way to each other ",
+        // "Zindagi mein kuch rishte naam nahi maangte, bas kuch pal aur thodi si jagah",
+
         credits: [
             { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
             { label: "WRITTEN BY", value: "SHRAVANI PUJAR" },
