@@ -296,6 +296,8 @@ export const works: Work[] = [
         image: "/images/thumbnail/shaam-jo-baki-thi.jpeg",
         tag: "Two lonely souls",
 
+
+
         kind: "SHORT FILM",
         year: "2026",
         runtime: "09:05",
@@ -313,8 +315,7 @@ export const works: Work[] = [
         ],
 
         quote:
-            "Across borders and beneath the same sky, some hearts never stop finding their way to each other ",
-        // "Zindagi mein kuch rishte naam nahi maangte, bas kuch pal aur thodi si jagah",
+            "Zindagi mein kuch rishte naam nahi maangte, bas kuch pal aur thodi si jagah",
 
         credits: [
             { label: "DIRECTED BY", value: "SHRAVANI PUJAR" },
